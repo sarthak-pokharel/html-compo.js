@@ -21,8 +21,14 @@
 		Hello
 	</bold-italic>
 
+	<click-expand-toggle>
+		<click-area>Click me</click-area>
+		<expand-area>I am expanded</expand-area>
+	</click-expand-toggle>
 
-
+	<div id="test">
+		I am a test
+	</div>
 	<!-- Define Components inside this tag. -->
 	<html-components>
 		<!-- A new Component Named 'users' -->
@@ -39,6 +45,13 @@
 		<bold-italic>
 			<b><i>@{compo.data}</i></b>
 		</bold-italic>
+
+		<click-expand-toggle>
+			@{compo.data}
+		</click-expand-toggle>
+		<click-area>
+			
+		</click-area>
 	</html-components>
 
 	<script src="index.js"></script>

@@ -18,7 +18,6 @@ function processComponentDefinationContainer(elem) {
 			if (mutation.addedNodes.length){
 				let node = mutation.addedNodes[0];
 				if(node instanceof HTMLElement) {
-					console.log(elem.children);
 					if([...elem.children].includes(node)) {
 						componentDefine(node,elem);
 					}
