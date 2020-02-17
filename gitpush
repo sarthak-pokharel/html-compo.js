@@ -1,5 +1,16 @@
 #!/bin/bash
 
-git add .
-git commit
-git push origin master
+if git add .
+then
+	if git commit
+	then
+		git push origin master
+
+		echo "Pushing to NPM"
+		if npm publish
+		then
+			echo "";
+			echo "All done";
+		fi
+	fi
+fi

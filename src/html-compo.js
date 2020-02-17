@@ -1,1 +1,87 @@
-!function(e,t){class n extends HTMLElement{constructor(){super();this.attachShadow({mode:"open"})}connectedCallback(){var e;e=this,new MutationObserver((function(e){e.forEach((function(e){if(e.addedNodes.length){let t=e.addedNodes[0];t instanceof HTMLElement&&function(e){let t=e.nodeName.toLowerCase(),n=e.getAttribute("compo-attrs")||"";n=n.split(",");let s=userDefinedComponents[t]={node:e,attrConstants:n,nodeName:t};e.remove(),o(e.nodeName.toLowerCase(),class extends HTMLElement{connectedCallback(){!function(e,t){let n=t.attrConstants.map(t=>[t=t.trim(),e.getAttribute(t)]),o={data:e.innerHTML},s=Object.fromEntries(n);e.innerHTML=function(e,t,n=["@{","}"]){let o=n[0]+"([^"+n[1]+"]+)\\"+n[1],s=new RegExp("[^\\*]\\"+o,"g"),r=new RegExp("\\*\\"+o,"g");return e.replace(s,(function(e,n,o){if("object"!=typeof t&&(t={}),t.hasOwnProperty(n))return e.substr(0,1)+t[n];let s=Function("locals","return locals."+n+";")(t);return null!=s?e.substr(0,1)+s:e})).replace(r,(function(e,t,n){return"*"==e.substr(0,1)?e.substr(1):e}))}(t.node.innerHTML,{...s,compo:o},["@{","}"])}(this,s)}})}(t)}}))})).observe(e,{childList:!0})}}function o(e,t){customElements.define(e,t)}e.userDefinedComponents={},o("html-components",n)}(window,document);
+(function(window,document){
+
+class HTMLCompos extends HTMLElement{
+	constructor() {
+		super();
+		let shadow = this.attachShadow({mode: 'open'});
+	}
+	connectedCallback() {
+		processComponentDefinationContainer(this);
+	}
+}
+window.userDefinedComponents = {};
+// let userDefinedComponents = {};
+function processComponentDefinationContainer(elem) {
+	var observer = new MutationObserver(function(mutations) {
+		mutations.forEach(function(mutation) {
+			if (mutation.addedNodes.length){
+				let node = mutation.addedNodes[0];
+				if(node instanceof HTMLElement) {
+					componentDefine(node);
+				}
+			}
+		});
+    });
+    observer.observe(elem, { childList: true });
+}
+function registerElement(name,construct) {
+	customElements.define(name,construct);
+}
+function componentDefine(node) {
+	let nodeName = node.nodeName.toLowerCase();
+	let attrConstants = node.getAttribute('compo-attrs') || "";
+	attrConstants = attrConstants.split(",");
+	let currentComponentObj = userDefinedComponents[nodeName] = {
+		node: node,
+		attrConstants: attrConstants,
+		nodeName: nodeName
+	}
+	node.remove();
+	registerElement(node.nodeName.toLowerCase(),class extends HTMLElement {
+		connectedCallback() {
+			useComponent(this,currentComponentObj);
+		}
+	});
+}
+function templateStr(str, locals, braces= ["@{","}"]) {
+	let regStr = braces[0]+"([^"+braces[1]+"]+)"+"\\"+braces[1];
+	let skipRegStr = "[^\\*]\\";
+	let noSkipRegStr = "\\*\\";
+	let reg = new RegExp(skipRegStr+regStr, "g");
+	let noSkipReg = new RegExp(noSkipRegStr+regStr, "g");
+	return str.replace(reg, function(rawmatch,match,pos) {
+		let rmatch = match;
+		if(typeof locals !="object") locals = ({});
+		if(locals.hasOwnProperty(match)) {
+			return rawmatch.substr(0,1) + locals[match];
+		}
+		let deepPropCheck = Function('locals','return locals.'+match+';')(locals);
+		//debugger
+		if(deepPropCheck != undefined) {
+			return rawmatch.substr(0,1) + deepPropCheck;	
+		}
+		return rawmatch;
+	}).replace(noSkipReg, function(raw,match,pos) {
+		if(raw.substr(0,1)=="*") {
+			return raw.substr(1);
+		};
+		return raw;
+	})
+}
+function useComponent(currentElement,componentObject) {
+	let processAttrs = componentObject.attrConstants;
+	let attrValsMapEntries = processAttrs.map(attr=> {
+		attr = attr.trim();
+		return [attr,currentElement.getAttribute(attr)]
+	});
+	let compo = {
+		data: currentElement.innerHTML
+	};
+	let attrValsMap = Object.fromEntries(attrValsMapEntries);
+	currentElement.innerHTML = templateStr(componentObject.node.innerHTML, {
+		...attrValsMap,
+		compo: compo
+	}, ["@{","}"]);
+}
+registerElement('html-components',HTMLCompos);
+})(window,document);
