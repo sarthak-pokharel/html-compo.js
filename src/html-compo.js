@@ -1,47 +1,12 @@
 (function(window,document){
 
-// The class below, "HTMLElemenet" is from StackOverflow, 
-// https://stackoverflow.com/a/52884370/12697805
-class HTMLBaseElement extends HTMLElement {
-  constructor(...args) {
-    const self = super(...args)
-    self.parsed = false // guard to make it easy to do certain stuff only once
-    self.parentNodes = []
-    return self
-  }
-
-  setup() {
-    // collect the parentNodes
-    let el = this;
-    while (el.parentNode) {
-      el = el.parentNode
-      this.parentNodes.push(el)
-    }
-    // check if the parser has already passed the end tag of the component
-    // in which case this element, or one of its parents, should have a nextSibling
-    // if not (no whitespace at all between tags and no nextElementSiblings either)
-    // resort to DOMContentLoaded or load having triggered
-    if ([this, ...this.parentNodes].some(el=> el.nextSibling) || document.readyState !== 'loading') {
-      this.childrenAvailableCallback();
-    } else {
-      this.mutationObserver = new MutationObserver(() => {
-        if ([this, ...this.parentNodes].some(el=> el.nextSibling) || document.readyState !== 'loading') {
-          this.childrenAvailableCallback()
-          this.mutationObserver.disconnect()
-        }
-      });
-
-      this.mutationObserver.observe(this, {childList: true});
-    }
-  }
-}
-class HTMLCompos extends HTMLBaseElement{
+class HTMLCompos extends HTMLElement{
 	constructor() {
 		super();
 		let shadow = this.attachShadow({mode: 'open'});
+		this.shadow = shadow;
 	}
 	connectedCallback() {
-		super.setup();
 		processComponentDefinationContainer(this);
 	}
 }
@@ -53,17 +18,20 @@ function processComponentDefinationContainer(elem) {
 			if (mutation.addedNodes.length){
 				let node = mutation.addedNodes[0];
 				if(node instanceof HTMLElement) {
-					componentDefine(node);
+					console.log(elem.children);
+					if([...elem.children].includes(node)) {
+						componentDefine(node,elem);
+					}
 				}
 			}
 		});
     });
-    observer.observe(elem, { childList: true });
+    observer.observe(elem, { childList: true,subTree:false });
 }
 function registerElement(name,construct) {
 	customElements.define(name,construct);
 }
-function componentDefine(node) {
+function componentDefine(node,defineLoc) {
 	let nodeName = node.nodeName.toLowerCase();
 	let attrConstants = node.getAttribute('compo-attrs') || "";
 	attrConstants = attrConstants.split(",");
@@ -73,7 +41,7 @@ function componentDefine(node) {
 		nodeName: nodeName
 	};
 	node.remove();
-	registerElement(node.nodeName.toLowerCase(),class extends HTMLBaseElement {
+	registerElement(node.nodeName.toLowerCase(),class extends HTMLElement {
 		connectedCallback() {
 			useComponent(this,currentComponentObj);
 		}
