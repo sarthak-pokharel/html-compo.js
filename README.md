@@ -10,7 +10,7 @@ https://www.npmjs.com/package/html-compo
 
 To use inside a Document,
 
-```
+```html
 
 <script src="https://cdn.jsdelivr.net/npm/html-compo"></script>
 
