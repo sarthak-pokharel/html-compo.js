@@ -1,10 +1,10 @@
 {
   "name": "html-compo",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A simple reusable html elemental components coding framework",
   "main": "src/html-compo.dev.js",
   "scripts": {
-    "minify-main":"npx minify src/html-compo.js > src/html-compo.min.js && cp html-compo.min.js html-compo.dev.min.js",
+    "minify-main":"npx minify src/html-compo.js > src/html-compo.min.js && cp src/html-compo.min.js src/html-compo.dev.min.js",
     "test": "echo \\\"No tests needed\\\";"
   },
   "repository": {
