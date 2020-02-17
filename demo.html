@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DEMO || html-compo.js</title>
+	<script src="src/html-compo.dev.js"></script>
+</head>
+<body>
+
+	<!-- Utilize Components in main Application -->
+	<my-user name="Sarthak" email="sarthak.whenever@gmail.com">
+		Sarthak is a student. He's from Nepal
+	</my-user>
+	<br/>
+	<br/>
+	<my-user name="Somebody" email="somebody@gmail.com">
+		Somebody is a someone. S/he's from somewhere.
+	</my-user>
+
+	<br/><br/>
+	<bold-italic>
+		Hello
+	</bold-italic>
+
+
+
+	<!-- Define Components inside this tag. -->
+	<html-components>
+		<!-- A new Component Named 'users' -->
+		<my-user compo-attrs="name, email">
+			Name: <bold-italic>@{name}</bold-italic>
+			<br/>
+			Email: @{email}
+			<br/>
+			Description: 
+			<br/>
+			<!-- 'compo' is a constant object for all component containing current component initiator object -->
+			@{compo.textContent}
+		</my-user>
+		<bold-italic>
+			<b><i>@{compo.textContent}</i></b>
+		</bold-italic>
+	</html-components>
+
+	<script src="index.js"></script>
+</body>
+</html>

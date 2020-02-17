@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>html-compo.js</title>
+	<script src="src/html-compo.dev.js"></script>
+</head>
+<body>
+
+	<large-text value="Lib: html-compo.js" ></large-text>
+	<x-description>
+		A basic JS library. It helps to create and reuse fake-like components.
+	</x-description>
+	<br/>
+	<large-text value="Demo"></large-text>
+	<x-description>Creating a <b-i>component</b-i>:</x-description>
+	<x-code>
+		&lt;html-components&gt;
+		&nbsp;&nbsp;&nbsp; &lt;!-- Define components here --&gt;
+		&lt;/html-components&gt;
+	</x-code>
+
+	<!--Defination of components-->
+	<html-components>
+		<large-text compo-attrs="value" >
+			<h1>@{value}</h1>
+		</large-text>
+		<x-description>
+			<style>
+				x-description{
+					font-family: sans;
+					display: block;
+				}
+			</style>
+			@{compo.data}
+		</x-description>
+		<x-code>
+			<style>
+				x-code{
+					display:block;
+					white-space: pre-line;
+				}
+			</style>
+			<code>
+				@{compo.data}
+			</code>
+		</x-code>
+		<b-i>
+			<b>
+				<i>
+					@{compo.data}
+				</i>
+			</b>
+		</b-i>
+	</html-components>
+</body>
+</html>

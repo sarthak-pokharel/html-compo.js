@@ -1,0 +1,19 @@
+{
+  "name": "html-compo",
+  "version": "1.0.0",
+  "description": "A simple reusable html elemental components coding framework",
+  "main": "html-compo.dev.js",
+  "scripts": {
+    "test": "echo \\\"No tests needed\\\";"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SarthakWhenever/html-compo.js.git"
+  },
+  "author": "Sarthak Pokharel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SarthakWhenever/html-compo.js/issues"
+  },
+  "homepage": "https://github.com/SarthakWhenever/html-compo.js#readme"
+}
