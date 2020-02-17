@@ -41,6 +41,10 @@ function componentDefine(node,defineLoc) {
 	};
 	node.remove();
 	registerElement(node.nodeName.toLowerCase(),class extends HTMLElement {
+		constructor() {
+			super();
+			let shadow = this.attachShadow({mode:'open'});
+		}
 		connectedCallback() {
 			useComponent(this,currentComponentObj);
 		}
@@ -81,7 +85,7 @@ function useComponent(currentElement,componentObject) {
 		data: currentElement.innerHTML
 	};
 	let attrValsMap = Object.fromEntries(attrValsMapEntries);
-	currentElement.innerHTML = templateStr(componentObject.node.innerHTML, {
+	currentElement.shadowRoot.innerHTML = templateStr(componentObject.node.innerHTML, {
 		...attrValsMap,
 		compo: compo
 	}, ["@{","}"]);
