@@ -1,6 +1,6 @@
 {
   "name": "html-compo",
-  "version": "1.9.4",
+  "version": "1.9.5",
   "description": "A simple reusable html elemental components coding framework",
   "main": "src/html-compo.dev.js",
   "scripts": {
@@ -17,5 +17,6 @@
     "url": "https://github.com/SarthakWhenever/html-compo.js/issues"
   },
   "homepage": "https://github.com/SarthakWhenever/html-compo.js#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "keywords": ["html-compo", "reusable","components", "html"]
 }
