@@ -4,7 +4,7 @@
   "description": "A simple reusable html elemental components coding framework",
   "main": "src/html-compo.dev.js",
   "scripts": {
-    "minify-main":"npx minify src/html-compo.js > src/html-compo.min.js",
+    "minify-main":"npx minify src/html-compo.js > src/html-compo.min.js && cp html-compo.min.js html-compo.dev.min.js",
     "test": "echo \\\"No tests needed\\\";"
   },
   "repository": {
