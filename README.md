@@ -12,7 +12,7 @@ To use inside a Document,
 
 ```
 
-https://cdn.jsdelivr.net/npm/html-compo
+<script src="https://cdn.jsdelivr.net/npm/html-compo"></script>
 
 ```
 
