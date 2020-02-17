@@ -1,13 +1,11 @@
 {
   "name": "html-compo",
-  "version": "1.8.0",
+  "version": "1.9.3",
   "description": "A simple reusable html elemental components coding framework",
   "main": "src/html-compo.dev.js",
   "scripts": {
     "minify-main": "npx minify src/html-compo.js > src/html-compo.min.js && cp src/html-compo.min.js src/html-compo.dev.min.js",
-    "test": "echo \\\"No tests needed\\\";",
-    "prepublish": "npm-auto-version",
-    "postpublish": "git push origin --tags"
+    "test": "echo \\\"No tests needed\\\";"
   },
   "repository": {
     "type": "git",
@@ -19,7 +17,5 @@
     "url": "https://github.com/SarthakWhenever/html-compo.js/issues"
   },
   "homepage": "https://github.com/SarthakWhenever/html-compo.js#readme",
-  "dependencies": {
-    "npm-auto-version": "^1.0.0"
-  }
+  "dependencies": {}
 }
