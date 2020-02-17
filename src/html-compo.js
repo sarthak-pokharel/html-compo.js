@@ -81,8 +81,9 @@ function useComponent(currentElement,componentObject) {
 		attr = attr.trim();
 		return [attr,currentElement.getAttribute(attr)]
 	});
+	currentElement.shadowRoot.innerHTML = currentElement.innerHTML;
 	let compo = {
-		data: currentElement.innerHTML
+		data: currentElement.shadowRoot.innerHTML
 	};
 	let attrValsMap = Object.fromEntries(attrValsMapEntries);
 	currentElement.shadowRoot.innerHTML = templateStr(componentObject.node.innerHTML, {
