@@ -1,5 +1,7 @@
 #!/bin/bash
 
+npm run minify-main
+
 if git add .
 then
 	if git commit
