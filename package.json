@@ -5,7 +5,9 @@
   "main": "src/html-compo.dev.js",
   "scripts": {
     "minify-main": "npx minify src/html-compo.js > src/html-compo.min.js && cp src/html-compo.min.js src/html-compo.dev.min.js",
-    "test": "echo \\\"No tests needed\\\";"
+    "test": "echo \\\"No tests needed\\\";",
+    "prepublish": "npm-auto-version",
+    "postpublish": "git push origin --tags"
   },
   "repository": {
     "type": "git",
@@ -17,5 +19,7 @@
     "url": "https://github.com/SarthakWhenever/html-compo.js/issues"
   },
   "homepage": "https://github.com/SarthakWhenever/html-compo.js#readme",
-  "dependencies": {}
+  "dependencies": {
+    "npm-auto-version": "^1.0.0"
+  }
 }
