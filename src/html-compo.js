@@ -96,7 +96,9 @@ function useComponent(currentElement,componentObject) {
 	});
 	currentElement.shadowRoot.innerHTML = currentElement.innerHTML;
 	let compo = {
-		data: currentElement.shadowRoot.innerHTML
+		data: currentElement.shadowRoot.innerHTML,
+		componentObject: currentElement.shadowRoot,
+		componentName: currentElement.nodeName.toLowerCase()
 	};
 	let attrValsMap = Object.fromEntries(attrValsMapEntries);
 	currentElement.shadowRoot.innerHTML = templateStr(componentObject.node.innerHTML, {

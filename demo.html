@@ -22,7 +22,7 @@
 	</bold-italic>
 
 	<dynamic-data ref="dynamics">TestData</dynamic-data>
-	
+	<test-comp></test-comp>
 	<!-- Define Components inside this tag. -->
 	<html-components>
 		<!-- A new Component Named 'users' -->
@@ -42,6 +42,9 @@
 		<dynamic-data>
 			@{compo.data}
 		</dynamic-data>
+		<test-comp>
+			@{compo.componentName}
+		</test-comp>
 	</html-components>
 
 </body>
