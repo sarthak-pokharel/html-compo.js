@@ -36,7 +36,6 @@ function componentDefine(node,defineLoc) {
 	let nodeName = node.nodeName.toLowerCase();
 	let attrConstants = node.getAttribute('compo-attrs') || "";
 	let shadowedOrNot = node.getAttribute('fragment');
-	console.log(shadowedOrNot)
 	if(shadowedOrNot && shadowedOrNot=="false") {
 		shadowedOrNot = false;
 	}else {
