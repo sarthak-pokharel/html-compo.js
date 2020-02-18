@@ -35,7 +35,7 @@ function registerElement(name,construct) {
 function componentDefine(node,defineLoc) {
 	let nodeName = node.nodeName.toLowerCase();
 	let attrConstants = node.getAttribute('compo-attrs') || "";
-	attrConstants = attrConstants.split(",");
+	attrConstants = attrConstants.split(",").filter(x=>!!x.trim());
 	let currentComponentObj = userDefinedComponents[nodeName] = {
 		node: node,
 		attrConstants: attrConstants,
@@ -51,12 +51,10 @@ function componentDefine(node,defineLoc) {
 			useComponent(this,currentComponentObj);
 		}
 		attributeChangedCallback() {
-			console.log("Attr changed")
 			let referenceVal = this.getAttribute('ref');
 			if(referenceVal!=null) {
 				nodeReferences[referenceVal] = this;
 			}
-			console.log("Ref updated");
 		}
 		static get observedAttributes() {
 			return ['ref'];
