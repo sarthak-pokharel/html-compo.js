@@ -113,15 +113,15 @@ function useComponent(currentElement,componentObject,options) {
 		compo: compo
 	};
 	if(options.fragment) {
-		currentElement.innerHTML = "";
+		currentElement.shadowRoot.innerHTML = currentElement.innerHTML;
 		compo.data = currentElement.shadowRoot.innerHTML;
 		compo.componentObject = currentElement.shadowRoot;
 		currentElement.shadowRoot.innerHTML = templateStr(
 			componentInnerData, componentPassVars, componentVarBraces
 		);
 	}else {
-		currentElement.shadowRoot.innerHTML = currentElement.innerHTML;
 		compo.data = currentElement.innerHTML;
+		currentElement.innerHTML = "";
 		compo.componentObject = currentElement;
 		currentElement.innerHTML = templateStr(
 			componentInnerData, componentPassVars, componentVarBraces
