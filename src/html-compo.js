@@ -102,7 +102,6 @@ function useComponent(currentElement,componentObject,options) {
 		attr = attr.trim();
 		return [attr,currentElement.getAttribute(attr)]
 	});
-	currentElement.shadowRoot.innerHTML = currentElement.innerHTML;
 	let compo = {
 		componentName: currentElement.nodeName.toLowerCase()
 	};
@@ -114,12 +113,14 @@ function useComponent(currentElement,componentObject,options) {
 		compo: compo
 	};
 	if(options.fragment) {
+		currentElement.innerHTML = "";
 		compo.data = currentElement.shadowRoot.innerHTML;
 		compo.componentObject = currentElement.shadowRoot;
 		currentElement.shadowRoot.innerHTML = templateStr(
 			componentInnerData, componentPassVars, componentVarBraces
 		);
 	}else {
+		currentElement.shadowRoot.innerHTML = currentElement.innerHTML;
 		compo.data = currentElement.innerHTML;
 		compo.componentObject = currentElement;
 		currentElement.innerHTML = templateStr(
