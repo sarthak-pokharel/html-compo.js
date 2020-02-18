@@ -139,7 +139,7 @@ let htmlCompo = {
 		if(!returnNode) {
 			return null;
 		}
-		return returnNode.shadowRoot;
+		return returnNode;
 	}
 }
 window.htmlCompo = htmlCompo;
