@@ -21,14 +21,8 @@
 		Hello
 	</bold-italic>
 
-	<click-expand-toggle>
-		<click-area>Click me</click-area>
-		<expand-area>I am expanded</expand-area>
-	</click-expand-toggle>
-
-	<div id="test">
-		I am a test
-	</div>
+	<dynamic-data ref="dynamics">TestData</dynamic-data>
+	
 	<!-- Define Components inside this tag. -->
 	<html-components>
 		<!-- A new Component Named 'users' -->
@@ -45,15 +39,10 @@
 		<bold-italic>
 			<b><i>@{compo.data}</i></b>
 		</bold-italic>
-
-		<click-expand-toggle>
+		<dynamic-data>
 			@{compo.data}
-		</click-expand-toggle>
-		<click-area>
-			
-		</click-area>
+		</dynamic-data>
 	</html-components>
 
-	<script src="index.js"></script>
 </body>
 </html>

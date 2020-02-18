@@ -1,0 +1,112 @@
+
+
+<!-- 
+Warning: 
+
+The content of this page if from 
+https://divante.com/blog/top-10-popular-javascript-frameworks-2019/
+
+This page has been created to demonstrate //cdn.jsdelivr.net/npm/html-compo and practice and imporve UI designing of myself
+
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Popular JS frameworks</title>
+        <script src="https://cdn.jsdelivr.net/npm/html-compo@latest"></script>
+    </head>
+    <body>
+      <lib-list>
+        <list-data lib="Vue">
+           Vue allows web developers to separate HTML, CSS and JavaScript, and for many of them, it is a more natural way of building web apps than using JSX, although it also allows using JSX thanks to internal plugins.<br/>
+           Furthermore, it has very detailed documentation and a community happy to share its knowledge. This considerably flattens the learning curve for developers new to Vue, making the technology a great fit for projects of basically any kind.
+        </list-data>
+        <list-data lib="Angular">
+          Angular is the most demanding and difficult JS framework but it is also great for enterprise projects. It gives you a whole ecosystem of tools, features, and possibilities. Its architecture (especially TypeScript) enforces good code quality which is useful for large teams because you omit a lot of typical developers’ errors. But since you get a lot out of the box from Angular, some developers complain about limited flexibility.
+          <br/>
+          With Angular, there is no need to rely on third-party libraries to build complex, dynamic applications – it provides almost everything you need and most likely more but the implementation needs to be done in an Angular-specific way.
+        </list-data>
+        <list-data lib="React">
+          React itself is technically more of a library but the robust ecosystem built around it makes it work like a full-blown framework. React was developed by Facebook in 2013 and back then was huge since, compared to Angular, it seemed very easy, fast and flexible. React immediately became JavaScript developers’ darling because it enabled them to spend more time writing JS code than framework-specific code.
+          <br/>
+        The main advantage of React was, however, its virtual DOM implementation. It is React’s local copy of HTML DOM that, by locally comparing elements, allows React libraries to render only actually changed components and save time by avoiding many unnecessary operations.
+        </list-data>
+        <list-data lib="Ember">
+          Ember.js, “a framework for ambitious developers”, was introduced in 2015 and quickly gained popularity. It is a full-featured framework often compared with Angular. It is used to develop dynamic single-page web applications, desktop, and mobile apps.
+          <br/>
+        One of its advantages is comprehensible best practices that allow developers to focus more on creating unique functionality, rather than writing tedious code. That was the main goal for Ember’s founders who were looking for a way to boost developers’ productivity.
+        </list-data>
+        <list-data lib="Node">
+          Node.js represents a “JavaScript everywhere” paradigm, which means it allows developers to use a single programming language for server-side and client-side scripts. Node.js is used by GoDaddy, Groupon, IBM, LinkedIn, Microsoft, Netflix, PayPal and many more.
+        </list-data>
+        <list-data lib="Aurelia">
+          Aurelia is a modern JS framework that allows building components using vanilla JavaScript or TypeScript. It situates application code at the center of interest, does not enforce framework-specific rules and, in general, tries to be as invisible as possible.
+        </list-data>
+        <list-data lib="Backbone">
+          Backbone.js was created by Jeremy Ashkenas (who is also known for CoffeeScript) and today is one of the most well-known JavaScript frameworks. It can be used to create single page applications; it is easy to use and quick to learn.
+        </list-data>
+        <list-data lib="Mithril">
+          Mithril is a UI JS framework that is mainly used for developing single page applications. It is small (< 8kb gzip), easy to implement, fast, and provides routing and XHR utilities out of the box. This framework might be a good option for those who like working with React since it has a few similar features.
+        </list-data>
+        <list-data lib="Meteor">
+          A few years ago, Meteor was considered a game-changer. Today, its fame seems to have faded away but this framework still has a lot to offer. It is easy to learn, flexible, and quick to build with. It is a good choice for those developers who are looking for a JS framework to build real-time applications.
+        </list-data>
+      </lib-list>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <!-- Components Definations -->
+        <html-components>
+          <lib-list>
+            @{compo.data}
+          </lib-list>
+          
+          <list-data compo-attrs="lib">
+            <label for="clickable">
+              <list-title id="list-title">@{lib}.js</list-title>
+            </label>
+            <style>
+              #clickable {
+                display: none;
+              }
+              list-description {
+                display: none;
+              }
+              #clickable:checked ~  list-description {
+                display: block;
+              }
+            </style>
+            <input type="checkbox" id="clickable">
+            <br/>
+            <list-description>
+              @{compo.data}
+            </list-description>
+          </list-data>
+          <list-description>
+            @{compo.data}
+          </list-description>
+          <list-title>
+            <style>
+              div {
+                font-size: 2em;
+              }
+            </style>
+            <div>
+              @{compo.data}
+            </div>
+          </list-title>
+        </html-components>
+    </body>
+</html>

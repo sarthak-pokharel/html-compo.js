@@ -10,8 +10,10 @@ class HTMLCompos extends HTMLElement{
 		processComponentDefinationContainer(this);
 	}
 }
-window.userDefinedComponents = {};
-// let userDefinedComponents = {};
+// window.userDefinedComponents = {};
+let userDefinedComponents = {},
+nodeReferences = Object.create(null);
+window.nodeReferences = nodeReferences;
 function processComponentDefinationContainer(elem) {
 	var observer = new MutationObserver(function(mutations) {
 		mutations.forEach(function(mutation) {
@@ -47,6 +49,17 @@ function componentDefine(node,defineLoc) {
 		}
 		connectedCallback() {
 			useComponent(this,currentComponentObj);
+		}
+		attributeChangedCallback() {
+			console.log("Attr changed")
+			let referenceVal = this.getAttribute('ref');
+			if(referenceVal!=null) {
+				nodeReferences[referenceVal] = this;
+			}
+			console.log("Ref updated");
+		}
+		static get observedAttributes() {
+			return ['ref'];
 		}
 	});
 }
@@ -92,4 +105,22 @@ function useComponent(currentElement,componentObject) {
 	}, ["@{","}"]);
 }
 registerElement('html-components',HTMLCompos);
+
+
+let htmlCompo = {
+	getComponent(reference) {
+		if(!reference) errorThrow("At least 1 argument required!");
+		if(typeof reference != "string") errorThrow("First argument 'reference' must be a string");
+		let returnNode = nodeReferences[reference];
+		if(!returnNode) {
+			return null;
+		}
+		return returnNode.shadowRoot;
+	}
+}
+window.htmlCompo = htmlCompo;
+function errorThrow(msg) {
+	throw new Error(msg);
+}
+
 })(window,document);
