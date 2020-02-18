@@ -35,6 +35,13 @@ function registerElement(name,construct) {
 function componentDefine(node,defineLoc) {
 	let nodeName = node.nodeName.toLowerCase();
 	let attrConstants = node.getAttribute('compo-attrs') || "";
+	let shadowedOrNot = node.getAttribute('fragment');
+	console.log(shadowedOrNot)
+	if(shadowedOrNot && shadowedOrNot=="false") {
+		shadowedOrNot = false;
+	}else {
+		shadowedOrNot = true;
+	}
 	attrConstants = attrConstants.split(",").filter(x=>!!x.trim());
 	let currentComponentObj = userDefinedComponents[nodeName] = {
 		node: node,
@@ -45,10 +52,14 @@ function componentDefine(node,defineLoc) {
 	registerElement(node.nodeName.toLowerCase(),class extends HTMLElement {
 		constructor() {
 			super();
-			let shadow = this.attachShadow({mode:'open'});
 		}
 		connectedCallback() {
-			useComponent(this,currentComponentObj);
+			if(shadowedOrNot) {
+				void this.attachShadow({mode:'open'});
+			}
+			useComponent(this,currentComponentObj, {
+				fragment: shadowedOrNot
+			});
 		}
 		attributeChangedCallback() {
 			let referenceVal = this.getAttribute('ref');
@@ -86,7 +97,7 @@ function templateStr(str, locals, braces= ["@{","}"]) {
 		return raw;
 	})
 }
-function useComponent(currentElement,componentObject) {
+function useComponent(currentElement,componentObject,options) {
 	let processAttrs = componentObject.attrConstants;
 	let attrValsMapEntries = processAttrs.map(attr=> {
 		attr = attr.trim();
@@ -94,15 +105,28 @@ function useComponent(currentElement,componentObject) {
 	});
 	currentElement.shadowRoot.innerHTML = currentElement.innerHTML;
 	let compo = {
-		data: currentElement.shadowRoot.innerHTML,
-		componentObject: currentElement.shadowRoot,
 		componentName: currentElement.nodeName.toLowerCase()
 	};
+	let componentInnerData = componentObject.node.innerHTML;
+	let componentVarBraces = ["@{","}"];
 	let attrValsMap = Object.fromEntries(attrValsMapEntries);
-	currentElement.shadowRoot.innerHTML = templateStr(componentObject.node.innerHTML, {
+	let componentPassVars = {
 		...attrValsMap,
 		compo: compo
-	}, ["@{","}"]);
+	};
+	if(options.fragment) {
+		compo.data = currentElement.shadowRoot.innerHTML;
+		compo.componentObject = currentElement.shadowRoot;
+		currentElement.shadowRoot.innerHTML = templateStr(
+			componentInnerData, componentPassVars, componentVarBraces
+		);
+	}else {
+		compo.data = currentElement.innerHTML;
+		compo.componentObject = currentElement;
+		currentElement.innerHTML = templateStr(
+			componentInnerData, componentPassVars, componentVarBraces
+		);
+	}
 }
 registerElement('html-components',HTMLCompos);
 
