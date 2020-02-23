@@ -1,19 +1,22 @@
-(function(window,document){
 
-class HTMLCompos extends HTMLElement{
+
+(function(window,document){
+	window.registerElement = registerElement;
+registerElement('html-components',class extends HTMLElement {
 	constructor() {
-		super();
+		super(HTMLTemplateElement);
 		let shadow = this.attachShadow({mode: 'open'});
 		this.shadow = shadow;
 	}
 	connectedCallback() {
+		this.style.display = 'none';
+		this.shadow.innerHTML = this.innerHTML;
+		this.innerHTML = "";
 		processComponentDefinationContainer(this);
 	}
-}
-// window.userDefinedComponents = {};
+});
 let userDefinedComponents = {},
 nodeReferences = Object.create(null);
-window.nodeReferences = nodeReferences;
 function processComponentDefinationContainer(elem) {
 	var observer = new MutationObserver(function(mutations) {
 		mutations.forEach(function(mutation) {
@@ -36,10 +39,10 @@ function componentDefine(node,defineLoc) {
 	let nodeName = node.nodeName.toLowerCase();
 	let attrConstants = node.getAttribute('compo-attrs') || "";
 	let shadowedOrNot = node.getAttribute('fragment');
-	if(shadowedOrNot && shadowedOrNot=="false") {
-		shadowedOrNot = false;
-	}else {
+	if(shadowedOrNot && shadowedOrNot=="true") {
 		shadowedOrNot = true;
+	}else {
+		shadowedOrNot = false;
 	}
 	attrConstants = attrConstants.split(",").filter(x=>!!x.trim());
 	let currentComponentObj = userDefinedComponents[nodeName] = {
@@ -116,6 +119,7 @@ function useComponent(currentElement,componentObject,options) {
 		currentElement.shadowRoot.innerHTML = currentElement.innerHTML;
 		compo.data = currentElement.shadowRoot.innerHTML;
 		compo.componentObject = currentElement.shadowRoot;
+		currentElement.innerHTML = "";
 		currentElement.shadowRoot.innerHTML = templateStr(
 			componentInnerData, componentPassVars, componentVarBraces
 		);
@@ -127,8 +131,7 @@ function useComponent(currentElement,componentObject,options) {
 			componentInnerData, componentPassVars, componentVarBraces
 		);
 	}
-}
-registerElement('html-components',HTMLCompos);
+};
 
 
 let htmlCompo = {

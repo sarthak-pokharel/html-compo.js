@@ -18,9 +18,10 @@
 		&nbsp;&nbsp;&nbsp; &lt;!-- Define components here --&gt;
 		&lt;/html-components&gt;
 	</x-code>
-
-	<no-frag>Hello</no-frag>
-
+	<no-frag>Hie</no-frag>
+	<template>
+		<img src="123.jpg" />
+	</template>
 	<!--Defination of components-->
 	<html-components>
 		<large-text compo-attrs="value" >
@@ -51,7 +52,8 @@
 				</i>
 			</b>
 		</b-i>
-		<no-frag fragment="false">
+		<no-frag fragment="true">
+			<img src="abc.jpg" alt="image"/>
 			@{compo.data}
 		</no-frag>
 	</html-components>
