@@ -17,10 +17,9 @@
 	</my-user>
 
 	<br/><br/>
-	<bold-italic>
-		Hello
+	<bold-italic ref="username">
+		Sarthak is my username
 	</bold-italic>
-
 	<dynamic-data ref="dynamics">TestData</dynamic-data>
 	<test-comp></test-comp>
 	<!-- Define Components inside this tag. -->
@@ -46,6 +45,8 @@
 			@{compo.componentName}
 		</test-comp>
 	</html-components>
-
+	<script>
+		alert(htmlCompo.getComponent('username').html());
+	</script>
 </body>
 </html>

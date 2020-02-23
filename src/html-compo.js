@@ -133,6 +133,30 @@ function useComponent(currentElement,componentObject,options) {
 	}
 };
 
+class HtmlCompoFunc {
+	no_parameter = Symbol('no_paramerter');
+	constructor(node) {
+		this.mainNode = node;
+		this.validNode = node.shadowRoot || node;
+		this.node = node;
+	}
+	html(cont=this.no_parameter) {
+		if(cont==this.no_parameter) {
+			return this.validNode.innerHTML;
+		}else {
+			this.validNode.innerHTML = cont;
+		}
+	}
+	attr(name=this.no_parameter,value=this.no_parameter){
+		if(name==this.no_parameter) {
+			return ;
+		}
+		if(value == this.no_parameter) {
+			return this.node.getAttribute(name);
+		}
+		this.node.setAttribute(name,value);
+	}
+}
 
 let htmlCompo = {
 	getComponent(reference) {
@@ -142,7 +166,7 @@ let htmlCompo = {
 		if(!returnNode) {
 			return null;
 		}
-		return returnNode;
+		return new HtmlCompoFunc(returnNode);
 	}
 }
 window.htmlCompo = htmlCompo;
