@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>html-compo.js</title>
+	<title>html-self.js</title>
 	<script src="src/html-compo.js"></script>
 </head>
 <body>
@@ -34,7 +34,7 @@
 					display: block;
 				}
 			</style>
-			@{compo.data}
+			@{self.data}
 		</x-description>
 		<x-code>
 			<style>
@@ -43,18 +43,18 @@
 					white-space: pre-line;
 				}
 			</style>
-			@{compo.data}
+			@{self.data}
 		</x-code>
 		<b-i>
 			<b>
 				<i>
-					@{compo.data}
+					@{self.data}
 				</i>
 			</b>
 		</b-i>
 		<no-frag fragment="true">
 			<img src="abc.jpg" alt="image"/>
-			@{compo.data}
+			@{self.data}
 		</no-frag>
 	</html-components>
 </body>

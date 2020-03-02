@@ -75,6 +75,7 @@ function componentDefine(node,defineLoc) {
 	});
 }
 function templateStr(str, locals, braces= ["@{","}"]) {
+	str += "  ";
 	let regStr = braces[0]+"([^"+braces[1]+"]+)"+"\\"+braces[1];
 	let skipRegStr = "[^\\*]\\";
 	let noSkipRegStr = "\\*\\";
@@ -86,7 +87,10 @@ function templateStr(str, locals, braces= ["@{","}"]) {
 		if(locals.hasOwnProperty(match)) {
 			return rawmatch.substr(0,1) + locals[match];
 		}
-		let deepPropCheck = Function('locals','return locals.'+match+';')(locals);
+		let deepPropCheck;
+		try {
+			deepPropCheck = Function('locals','return locals.'+match+';')(locals);
+		}catch(err) {}
 		//debugger
 		if(deepPropCheck != undefined) {
 			return rawmatch.substr(0,1) + deepPropCheck;	
@@ -97,7 +101,7 @@ function templateStr(str, locals, braces= ["@{","}"]) {
 			return raw.substr(1);
 		};
 		return raw;
-	})
+	});
 }
 function useComponent(currentElement,componentObject,options) {
 	let processAttrs = componentObject.attrConstants;
@@ -113,7 +117,7 @@ function useComponent(currentElement,componentObject,options) {
 	let attrValsMap = Object.fromEntries(attrValsMapEntries);
 	let componentPassVars = {
 		...attrValsMap,
-		compo: compo
+		self: compo
 	};
 	if(options.fragment) {
 		currentElement.shadowRoot.innerHTML = currentElement.innerHTML;
