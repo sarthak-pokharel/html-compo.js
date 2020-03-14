@@ -1,7 +1,7 @@
 
 
 (function(window,document){
-	window.registerElement = registerElement;
+
 registerElement('html-components',class extends HTMLElement {
 	constructor() {
 		super(HTMLTemplateElement);
