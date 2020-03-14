@@ -44,14 +44,15 @@ function componentDefine(node,defineLoc) {
 	}else {
 		shadowedOrNot = false;
 	}
-	attrConstants = attrConstants.split(",").filter(x=>!!x.trim());
+	attrConstants = attrConstants.split(",").filter(x=>!!x.trim())
 	let currentComponentObj = userDefinedComponents[nodeName] = {
 		node: node,
 		attrConstants: attrConstants,
 		nodeName: nodeName
 	};
 	node.remove();
-	registerElement(node.nodeName.toLowerCase(),class extends HTMLElement {
+	let nodeNameRegister = node.nodeName.toLowerCase();
+	registerElement(nodeName,class extends HTMLElement {
 		constructor() {
 			super();
 		}
@@ -109,7 +110,7 @@ function useComponent(currentElement,componentObject,options) {
 		attr = attr.trim();
 		return [attr,currentElement.getAttribute(attr)]
 	});
-	let compo = {
+	let compo = { //'self' obj
 		componentName: currentElement.nodeName.toLowerCase()
 	};
 	let componentInnerData = componentObject.node.innerHTML;
