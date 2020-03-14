@@ -5,57 +5,16 @@
 	<script src="src/html-compo.js"></script>
 </head>
 <body>
-
-	<large-text value="Lib: html-compo.js" ></large-text>
-	<x-description>
-		A basic JS library. It helps to create and reuse fake-like components.
-	</x-description>
-	<br/>
-	<large-text value="Demo"></large-text>
-	<x-description>Creating a <b-i>component</b-i>:</x-description>
-	<x-code>
-		&lt;html-components&gt;
-		&nbsp;&nbsp;&nbsp; &lt;!-- Define components here --&gt;
-		&lt;/html-components&gt;
-	</x-code>
-	<no-frag>Hie</no-frag>
+	<test-header img="test-image.png">
+		Hey!
+	</test-header>
 	<template>
-		<img src="123.jpg" />
-	</template>
-	<!--Defination of components-->
-	<html-components>
-		<large-text compo-attrs="value" >
-			<h1>@{value}</h1>
-		</large-text>
-		<x-description>
-			<style>
-				:host{
-					font-family: sans;
-					display: block;
-				}
-			</style>
-			@{self.data}
-		</x-description>
-		<x-code>
-			<style>
-				:host{
-					display:block;
-					white-space: pre-line;
-				}
-			</style>
-			@{self.data}
-		</x-code>
-		<b-i>
-			<b>
-				<i>
-					@{self.data}
-				</i>
-			</b>
-		</b-i>
-		<no-frag fragment="true">
-			<img src="abc.jpg" alt="image"/>
-			@{self.data}
-		</no-frag>
+		<html-components>
+		<test-header compo-attrs="img">
+			<h1>@{self.data}</h1>
+			<img src="@{img}" />
+		</test-header>
 	</html-components>
+	</template>
 </body>
 </html>
