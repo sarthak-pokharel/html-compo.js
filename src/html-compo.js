@@ -1,10 +1,9 @@
 
 
 (function(window,document){
-
-registerElement('html-components',class extends HTMLElement {
+let HTMLComponentsClass = class extends HTMLElement {
 	constructor() {
-		super(HTMLTemplateElement);
+		super();
 		let shadow = this.attachShadow({mode: 'open'});
 		this.shadow = shadow;
 	}
@@ -14,7 +13,10 @@ registerElement('html-components',class extends HTMLElement {
 		this.innerHTML = "";
 		processComponentDefinationContainer(this);
 	}
-});
+}
+let definationTags = ['html-components','h-c']
+registerElement(definationTags[0],HTMLComponentsClass);
+// registerElement(definationTags[1],HTMLComponentsClass);
 let userDefinedComponents = {},
 nodeReferences = Object.create(null);
 function processComponentDefinationContainer(elem) {
