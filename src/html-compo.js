@@ -44,7 +44,7 @@ function componentDefine(node,defineLoc) {
 	}else {
 		shadowedOrNot = false;
 	}
-	attrConstants = attrConstants.split(",").filter(x=>!!x.trim())
+	attrConstants = attrConstants.split(",").filter(x=>!!x.trim());
 	let currentComponentObj = userDefinedComponents[nodeName] = {
 		node: node,
 		attrConstants: attrConstants,
@@ -76,6 +76,7 @@ function componentDefine(node,defineLoc) {
 	});
 }
 function templateStr(str, locals, braces= ["@{","}"]) {
+	// debugger
 	str += "  ";
 	let regStr = braces[0]+"([^"+braces[1]+"]+)"+"\\"+braces[1];
 	let skipRegStr = "[^\\*]\\";
@@ -92,7 +93,7 @@ function templateStr(str, locals, braces= ["@{","}"]) {
 		try {
 			deepPropCheck = Function('locals','return locals.'+match+';')(locals);
 		}catch(err) {}
-		//debugger
+		//If not found as a literal
 		if(deepPropCheck != undefined) {
 			return rawmatch.substr(0,1) + deepPropCheck;	
 		}
@@ -104,11 +105,23 @@ function templateStr(str, locals, braces= ["@{","}"]) {
 		return raw;
 	});
 }
+
 function useComponent(currentElement,componentObject,options) {
 	let processAttrs = componentObject.attrConstants;
 	let attrValsMapEntries = processAttrs.map(attr=> {
-		attr = attr.trim();
-		return [attr,currentElement.getAttribute(attr)]
+		attr = attr.trim().split("=");
+		let rval = [attr[0]];
+		let val = currentElement.getAttribute(attr[0]);
+		if(val==null) {
+			if(1 in attr) {
+				rval.push(attr[1])
+			}else {
+				rval.push("null");
+			}
+		}else {
+			rval.push(val);
+		}
+		return rval;
 	});
 	let compo = { //'self' obj
 		componentName: currentElement.nodeName.toLowerCase()
@@ -118,7 +131,7 @@ function useComponent(currentElement,componentObject,options) {
 	let attrValsMap = Object.fromEntries(attrValsMapEntries);
 	let componentPassVars = {
 		...attrValsMap,
-		self: compo
+		self:compo
 	};
 	if(options.fragment) {
 		currentElement.shadowRoot.innerHTML = currentElement.innerHTML;
