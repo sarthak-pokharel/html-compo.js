@@ -1,22 +1,27 @@
 
 
 (function(window,document){
-let HTMLComponentsClass = class extends HTMLElement {
-	constructor() {
-		super();
-		let shadow = this.attachShadow({mode: 'open'});
-		this.shadow = shadow;
-	}
-	connectedCallback() {
-		this.style.display = 'none';
-		this.shadow.innerHTML = this.innerHTML;
-		this.innerHTML = "";
-		processComponentDefinationContainer(this);
-	}
+let HTMLComponentsClass = [];
+let definationTags = ['html-components','h-c'];
+
+for(let definationTag of definationTags) {
+	let currentClass = (class extends HTMLElement {
+		constructor() {
+			super();
+			let shadow = this.attachShadow({mode: 'open'});
+			this.shadow = shadow;
+		}
+		connectedCallback() {
+			this.style.display = 'none';
+			this.shadow.innerHTML = this.innerHTML;
+			this.innerHTML = "";
+			processComponentDefinationContainer(this);
+		}
+	});
+	HTMLComponentsClass.push([definationTag,currentClass]);
+	registerElement(definationTag,currentClass);
 }
-let definationTags = ['html-components','h-c']
-registerElement(definationTags[0],HTMLComponentsClass);
-// registerElement(definationTags[1],HTMLComponentsClass);
+
 let userDefinedComponents = {},
 nodeReferences = Object.create(null);
 function processComponentDefinationContainer(elem) {
