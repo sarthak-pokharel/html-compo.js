@@ -18,5 +18,10 @@
   },
   "homepage": "https://github.com/SarthakWhenever/html-compo.js#readme",
   "dependencies": {},
-  "keywords": ["html-compo", "reusable","components", "html"]
+  "keywords": [
+    "html-compo",
+    "reusable",
+    "components",
+    "html"
+  ]
 }
