@@ -1,6 +1,6 @@
 {
   "name": "html-compo",
-  "version": "2.7.9",
+  "version": "2.8.0",
   "description": "A simple reusable html elemental components coding framework",
   "main": "src/html-compo.dev.js",
   "scripts": {
