@@ -84,7 +84,6 @@ function componentDefine(node,defineLoc) {
 }
 function templateStr(str, locals, braces= ["@{","}"]) {
 	// debugger
-	str += "  ";
 	let regStr = braces[0]+"([^"+braces[1]+"]+)"+"\\"+braces[1];
 	let skipRegStr = "[^\\*]\\";
 	let noSkipRegStr = "\\*\\";
