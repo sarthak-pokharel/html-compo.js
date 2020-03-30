@@ -1,7 +1,7 @@
 #HTML Components Create and Reuse
 
 Home Page:
-https://sarthakwhenever.github.io/html-compo.js/
+https://sarthak-pokharel.github.io/html-compo-documentation/
 [Under Developent]
 
 NPMJS:
@@ -12,7 +12,7 @@ To use inside a Document,
 
 ```html
 
-<script src="https://cdn.jsdelivr.net/npm/html-compo"></script>
+<script src="https://cdn.jsdelivr.net/npm/html-compo@latest"></script>
 
 ```
 
