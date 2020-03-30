@@ -1,8 +1,10 @@
 #HTML Components Create and Reuse
 
 Home Page:
+https://sarthak-pokharel.github.io/html-compo/
+
+DOCUMENTATION:
 https://sarthak-pokharel.github.io/html-compo-documentation/
-[Under Developent]
 
 NPMJS:
 https://www.npmjs.com/package/html-compo
