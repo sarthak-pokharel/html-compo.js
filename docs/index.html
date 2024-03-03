@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>HTML-COMPO.js</title>
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/html-compo@latest"></script>
+  <script src="./libs/run_prettify.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="manifest" href="./webmanifest.json">
+  <link rel="icon" href="icons/Sarthak_200x200.png" type="image/png">
+</head>
+<body>
+  <app-root>
+    <h1>HTML-Compo.js</h1>
+      <p>
+        Reuse the html components! With html-compo, you can reuse the html components. The library is superfast and performant!
+        The <code><o-t>html-components</o-t></code> tag is used as components defination container. As an alternative <code><o-t>h-c</o-t></code> tag can be used instead of long <code><o-t>html-components</o-t></code> tag
+      </p>
+      <div>
+<html-code>
+<o-t>user-data</o-t>
+  Jhon
+<c-t>user-data</c-t>
+<o-t>user-data</o-t>
+  Harry
+<c-t>user-data</c-t>
+
+<o-t>html-components</o-t>
+  <o-t>user-data</o-t>
+    <o-t>div</o-t>
+      User Name : <o-t>b</o-t>*@{self.data}<c-t>b</c-t>
+    <c-t>div</c-t>
+  <c-t>user-data</c-t>
+<c-t>html-components</c-t>
+</html-code>
+        <code-output>
+          <div>User Name: <b>Jhon</b></div>
+          <div>User Name: <b>Harry</b></div>
+        </code-output>
+      </div>
+      <br/><br/>
+      <div>
+        You can use <i>compo-attrs</i> attribute to watch specific attrubutes while using components
+      </div>
+      <div>
+<html-code>
+<o-t>user-detail 
+  name="Jhon" 
+  contactnum="0682936273" 
+  description="Jhon is a very versatile employee"</o-t><c-t>user-detail</c-t>
+<o-t>user-detail 
+  name="Harry" 
+  contactnum="082665623" 
+  description="Jhon is a very smart employee"</o-t><c-t>user-detail</c-t>
+
+<o-t>html-components</o-t>
+  <o-t>user-detail compo-attrs="name, contactnum,description"</o-t>
+    User Name: *@{name}
+    <o-t>br/</o-t>
+    Contact Number: *@{contactnum}
+    <o-t>br/</o-t>
+    Description: *@{description}
+    <o-t>br/</o-t>
+    <o-t>br/</o-t>
+  <c-t>user-detail</c-t>
+<c-t>html-components</c-t>
+
+</html-code>
+<br/><br/>
+<code-output>
+  <user-detail name="Jhon" contactnum="0682936273" description="Jhon is a very versatile employee"></user-detail>
+  <user-detail name="Harry" contactnum="082665623" description="Harry is a very smart employee"></user-detail> 
+</code-output>
+      </div>
+      <br/><br/>
+      For default value of compo-attr, the follwing example is shown.
+      <html-code>
+<show-elem elem="food-component"></show-elem>
+<o-t>br</o-t>
+<o-t>food-component foodname="Burger" rating="4.9"</o-t><c-t>food-component</c-t>
+
+<o-t>h-c</o-t><o-t>!-- alternative to html-components tag --</o-t>
+  <o-t>food-component compo-attrs="foodname=Pizza"</o-t>
+    FoodName: @{foodname}, Rating: @{rating};
+  <c-t>food-component</c-t>
+<c-t>h-c</c-t>
+      </html-code>
+      <code-output>
+        FoodName: Pizza, Rating: 5;
+        <br/>
+        FoodName: Burger, Rating: 4.9;
+      </code-output>
+  </app-root>
+
+  <html-components>
+    <app-root>
+      @{self.data}
+    </app-root>
+    <user-detail compo-attrs="name, contactnum,description">  
+        User Name: @{name}
+        <br/>  
+        Contact Number: @{contactnum}
+        <br/>  
+        Description: @{description}
+        <br/>  
+        <br/>
+      </user-detail> 
+
+    <!--Further Components-->
+    <html-code>
+      <pre class="prettyprint lang-html"> @{self.data} </pre>
+    </html-code>
+    <x-code><pre class="prettyprint">@{self.data}</pre></x-code>
+    <o-t>&lt;@{self.data}&gt;</o-t>
+    <c-t>&lt;/@{self.data}&gt;</c-t>
+    <code-output>
+      <br/>
+      Output: 
+      <div class="outp-cust">
+        @{self.data}
+      </div>
+    </code-output>
+    <show-elem compo-attrs="elem">&lt;@{elem}&gt;@{self.data}&lt;/@{elem}&gt;</show-elem>
+  </html-components>
+  <script src="./js/script.js"></script>
+</body>
+</html>
