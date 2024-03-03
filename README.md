@@ -15,9 +15,10 @@ NPMJS:
 
 To use inside a Document,
 
+
 ```html
 
-<script src="https://cdn.jsdelivr.net/npm/html-compo@latest"></script>
+<script src="//cdn.jsdelivr.net/npm/html-compo@latest"></script>
 
 ```
 
