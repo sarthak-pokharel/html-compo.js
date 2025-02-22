@@ -1,12 +1,12 @@
-#HTML Components Create and Reuse
+# HTML Components Create and Reuse
 
 Home Page:
 
-[https://sarthak-pokharel.github.io/html-compo.js/](https://sarthak-pokharel.github.io/html-compo.js/)
+[https://htmlcompo.sarthak2004.com/](https://htmlcompo.sarthak2004.com/)
 
 DOCUMENTATION:
 
-[https://sarthak-pokharel.github.io/html-compo.js/docs](https://sarthak-pokharel.github.io/html-compo.js/docs)
+[https://htmlcompo.sarthak2004.com/docs](https://htmlcompo.sarthak2004.com/docs)
 
 NPMJS:
 
