@@ -2,11 +2,11 @@
 
 Home Page:
 
-[https://htmlcompo.sarthak2004.com/](https://htmlcompo.sarthak2004.com/)
+[htmlcompo.sarthak2004.com](https://htmlcompo.sarthak2004.com/)
 
 DOCUMENTATION:
 
-[https://htmlcompo.sarthak2004.com/docs](https://htmlcompo.sarthak2004.com/docs)
+[htmlcompo.sarthak2004.com/docs](https://htmlcompo.sarthak2004.com/docs)
 
 NPMJS:
 
