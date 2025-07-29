@@ -5,7 +5,7 @@ A lightweight JavaScript library for creating reusable HTML components without a
 ## 🚀 Quick Start
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/html-compo@latest/dist/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html-compo@latest/src/main.js"></script>
 
 <user-card>John Doe</user-card>
 <user-card>Jane Smith</user-card>
@@ -36,7 +36,7 @@ A lightweight JavaScript library for creating reusable HTML components without a
 
 ### CDN (Recommended)
 ```html
-<script src="https://cdn.jsdelivr.net/npm/html-compo@latest/dist/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html-compo@latest/src/main.js"></script>
 ```
 
 ### NPM

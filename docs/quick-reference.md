@@ -4,7 +4,7 @@
 
 ```html
 <!-- CDN -->
-<script src="https://cdn.jsdelivr.net/npm/html-compo@latest/dist/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html-compo@latest/src/main.js"></script>
 
 <!-- NPM -->
 npm install html-compo
