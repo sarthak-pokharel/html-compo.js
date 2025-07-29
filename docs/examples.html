@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML-COMPO.js - Interactive Examples</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="//cdn.jsdelivr.net/npm/html-compo@latest"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f8fafc;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
+    main {
+      padding: 3rem 0;
+    }
+    
+    .example-section {
+      background: white;
+      margin-bottom: 3rem;
+      padding: 2.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    
+    h2 {
+      font-size: 2rem;
+      color: #2d3748;
+      margin-bottom: 1.5rem;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 0.5rem;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+      color: #4a5568;
+      margin: 2rem 0 1rem 0;
+    }
+    
+    .demo-container {
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 1.5rem 0;
+    }
+    
+    .demo-header {
+      background: #2d3748;
+      color: white;
+      padding: 0.8rem 1rem;
+      font-weight: 500;
+    }
+    
+    .demo-content {
+      padding: 1.5rem;
+      background: #f8fafc;
+    }
+    
+    .code-editor {
+      background: #1a202c;
+      color: #e2e8f0;
+      padding: 1rem;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+    
+    .output-section {
+      background: white;
+      border-top: 1px solid #e2e8f0;
+      padding: 1.5rem;
+    }
+    
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+    
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    button:hover {
+      background: #5a67d8;
+      transform: translateY(-1px);
+    }
+    
+    button:disabled {
+      background: #a0aec0;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    input, select {
+      padding: 0.7rem;
+      border: 1px solid #cbd5e0;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    
+    .interactive-demo {
+      border: 2px dashed #cbd5e0;
+      padding: 2rem;
+      border-radius: 8px;
+      background: white;
+      margin: 1rem 0;
+    }
+    
+    .feature-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .feature-card {
+      background: #f8fafc;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+    
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      margin: 2rem 0;
+      padding: 1rem;
+      background: #e2e8f0;
+      border-radius: 8px;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #667eea;
+    }
+    
+    .stat-label {
+      color: #4a5568;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>HTML-COMPO.js Examples</h1>
+      <p class="subtitle">Interactive demonstrations and real-world use cases</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="example-section">
+      <h2>📊 Interactive Dashboard</h2>
+      <p>A complete dashboard example showing data binding and component interaction.</p>
+      
+      <div class="controls">
+        <button onclick="addUser()">Add User</button>
+        <button onclick="updateStats()">Update Stats</button>
+        <select id="themeSelect" onchange="changeTheme()">
+          <option value="light">Light Theme</option>
+          <option value="dark">Dark Theme</option>
+        </select>
+      </div>
+      
+      <div class="interactive-demo">
+        <dashboard-widget theme="light">
+          <stat-card ref="userCount" icon="👥" value="150" label="Total Users"></stat-card>
+          <stat-card ref="revenue" icon="💰" value="$12,500" label="Revenue"></stat-card>
+          <stat-card ref="orders" icon="📦" value="89" label="Orders"></stat-card>
+        </dashboard-widget>
+        
+        <user-list ref="userList">
+          <user-item name="Alice Johnson" role="Admin" status="online"></user-item>
+          <user-item name="Bob Smith" role="User" status="offline"></user-item>
+          <user-item name="Carol Brown" role="Moderator" status="online"></user-item>
+        </user-list>
+      </div>
+      
+      <div class="demo-container">
+        <div class="demo-header">Component Definitions</div>
+        <div class="code-editor">&lt;html-components&gt;
+  &lt;dashboard-widget compo-attrs="theme=light"&gt;
+    &lt;div class="dashboard" data-theme="@{theme}"&gt;
+      &lt;h3&gt;📈 Dashboard Overview&lt;/h3&gt;
+      &lt;div class="stats-grid"&gt;@{self.data}&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/dashboard-widget&gt;
+  
+  &lt;stat-card compo-attrs="icon,value,label"&gt;
+    &lt;div class="stat-card"&gt;
+      &lt;div class="stat-icon"&gt;@{icon}&lt;/div&gt;
+      &lt;div class="stat-value"&gt;@{value}&lt;/div&gt;
+      &lt;div class="stat-label"&gt;@{label}&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/stat-card&gt;
+  
+  &lt;user-list&gt;
+    &lt;div class="user-list"&gt;
+      &lt;h3&gt;👤 Active Users&lt;/h3&gt;
+      &lt;div class="user-items"&gt;@{self.data}&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/user-list&gt;
+  
+  &lt;user-item compo-attrs="name,role,status"&gt;
+    &lt;div class="user-item"&gt;
+      &lt;span class="user-status status-@{status}"&gt;&lt;/span&gt;
+      &lt;span class="user-name"&gt;@{name}&lt;/span&gt;
+      &lt;span class="user-role"&gt;@{role}&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/user-item&gt;
+&lt;/html-components&gt;</div>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h2>🛒 Shopping Cart</h2>
+      <p>Interactive shopping cart with add/remove functionality.</p>
+      
+      <div class="controls">
+        <button onclick="addToCart('Laptop', 999, 'laptop')">Add Laptop ($999)</button>
+        <button onclick="addToCart('Mouse', 25, 'mouse')">Add Mouse ($25)</button>
+        <button onclick="addToCart('Keyboard', 75, 'keyboard')">Add Keyboard ($75)</button>
+        <button onclick="clearCart()">Clear Cart</button>
+      </div>
+      
+      <div class="interactive-demo">
+        <shopping-cart ref="cart">
+          <cart-item product="Sample Item" price="0" quantity="0" id="sample"></cart-item>
+        </shopping-cart>
+      </div>
+      
+      <div class="demo-container">
+        <div class="demo-header">Shopping Cart Implementation</div>
+        <div class="code-editor">&lt;shopping-cart&gt;
+  &lt;div class="shopping-cart"&gt;
+    &lt;h3&gt;🛒 Shopping Cart&lt;/h3&gt;
+    &lt;div class="cart-items"&gt;@{self.data}&lt;/div&gt;
+    &lt;div class="cart-total"&gt;
+      Total: &lt;span id="cartTotal"&gt;$0.00&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/shopping-cart&gt;
+
+&lt;cart-item compo-attrs="product,price,quantity,id"&gt;
+  &lt;div class="cart-item" id="item-@{id}"&gt;
+    &lt;span class="item-name"&gt;@{product}&lt;/span&gt;
+    &lt;span class="item-price"&gt;$@{price}&lt;/span&gt;
+    &lt;div class="quantity-controls"&gt;
+      &lt;button onclick="updateQuantity('@{id}', -1)"&gt;-&lt;/button&gt;
+      &lt;span class="quantity"&gt;@{quantity}&lt;/span&gt;
+      &lt;button onclick="updateQuantity('@{id}', 1)"&gt;+&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;button onclick="removeItem('@{id}')" class="remove-btn"&gt;🗑️&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/cart-item&gt;</div>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h2>💬 Chat Interface</h2>
+      <p>Real-time chat component with message types and timestamps.</p>
+      
+      <div class="controls">
+        <input type="text" id="messageInput" placeholder="Type a message..." style="flex: 1; min-width: 200px;">
+        <select id="messageType">
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+          <option value="system">System</option>
+        </select>
+        <button onclick="sendMessage()">Send</button>
+      </div>
+      
+      <div class="interactive-demo">
+        <chat-container ref="chatContainer">
+          <chat-message type="system" time="10:00" sender="System">Welcome to the chat!</chat-message>
+          <chat-message type="user" time="10:01" sender="Alice">Hello everyone!</chat-message>
+          <chat-message type="admin" time="10:02" sender="Admin">Good morning!</chat-message>
+        </chat-container>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h2>📊 Data Visualization</h2>
+      <p>Interactive charts and progress bars.</p>
+      
+      <div class="controls">
+        <button onclick="updateProgress()">Update Progress</button>
+        <button onclick="addDataPoint()">Add Data Point</button>
+        <button onclick="resetChart()">Reset Chart</button>
+      </div>
+      
+      <div class="interactive-demo">
+        <progress-chart ref="mainChart">
+          <progress-bar ref="progress1" label="Sales" value="75" max="100" color="#4caf50"></progress-bar>
+          <progress-bar ref="progress2" label="Marketing" value="60" max="100" color="#2196f3"></progress-bar>
+          <progress-bar ref="progress3" label="Support" value="90" max="100" color="#ff9800"></progress-bar>
+        </progress-chart>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h2>🎮 Interactive Game</h2>
+      <p>Simple number guessing game demonstrating state management.</p>
+      
+      <div class="interactive-demo">
+        <guessing-game ref="game">
+          <div class="game-controls">
+            <input type="number" id="guessInput" min="1" max="100" placeholder="Enter 1-100">
+            <button onclick="makeGuess()">Guess!</button>
+            <button onclick="newGame()">New Game</button>
+          </div>
+          <game-status ref="gameStatus" attempts="0" message="Guess a number between 1 and 100!"></game-status>
+        </guessing-game>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <h2>🎨 Theme Customization</h2>
+      <p>Dynamic theme switching with CSS custom properties.</p>
+      
+      <div class="controls">
+        <button onclick="setTheme('blue')">Blue Theme</button>
+        <button onclick="setTheme('green')">Green Theme</button>
+        <button onclick="setTheme('purple')">Purple Theme</button>
+        <button onclick="setTheme('dark')">Dark Theme</button>
+      </div>
+      
+      <div class="interactive-demo">
+        <themed-component ref="themedDemo" theme="blue">
+          <theme-card title="Dynamic Theming" content="This component changes colors based on the selected theme!"></theme-card>
+          <theme-button action="example">Click Me!</theme-button>
+        </themed-component>
+      </div>
+    </div>
+  </main>
+
+  <!-- Component Definitions -->
+  <html-components>
+    <!-- Dashboard Components -->
+    <dashboard-widget compo-attrs="theme=light">
+      <div class="dashboard" data-theme="@{theme}" style="
+        background: @{theme === 'dark' ? '#2d3748' : '#f8fafc'};
+        color: @{theme === 'dark' ? '#e2e8f0' : '#2d3748'};
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid @{theme === 'dark' ? '#4a5568' : '#e2e8f0'};
+      ">
+        <h3 style="margin: 0 0 20px 0;">📈 Dashboard Overview</h3>
+        <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+          @{self.data}
+        </div>
+      </div>
+    </dashboard-widget>
+    
+    <stat-card compo-attrs="icon,value,label">
+      <div class="stat-card" style="
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      ">
+        <div class="stat-icon" style="font-size: 2rem; margin-bottom: 10px;">@{icon}</div>
+        <div class="stat-value" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 5px;">@{value}</div>
+        <div class="stat-label" style="opacity: 0.9;">@{label}</div>
+      </div>
+    </stat-card>
+    
+    <user-list>
+      <div class="user-list" style="margin-top: 20px; background: white; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0;">
+        <h3 style="margin: 0 0 15px 0;">👤 Active Users</h3>
+        <div class="user-items" style="display: flex; flex-direction: column; gap: 10px;">
+          @{self.data}
+        </div>
+      </div>
+    </user-list>
+    
+    <user-item compo-attrs="name,role,status">
+      <div class="user-item" style="
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 10px;
+        background: #f8fafc;
+        border-radius: 5px;
+        border-left: 3px solid @{status === 'online' ? '#4caf50' : '#9e9e9e'};
+      ">
+        <span class="user-status" style="
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: @{status === 'online' ? '#4caf50' : '#9e9e9e'};
+        "></span>
+        <span class="user-name" style="font-weight: 500; flex: 1;">@{name}</span>
+        <span class="user-role" style="
+          background: #667eea;
+          color: white;
+          padding: 3px 8px;
+          border-radius: 12px;
+          font-size: 0.8rem;
+        ">@{role}</span>
+      </div>
+    </user-item>
+
+    <!-- Shopping Cart Components -->
+    <shopping-cart>
+      <div class="shopping-cart" style="
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        border: 2px solid #e2e8f0;
+        max-width: 500px;
+      ">
+        <h3 style="margin: 0 0 20px 0; color: #2d3748;">🛒 Shopping Cart</h3>
+        <div class="cart-items" style="margin-bottom: 20px;">@{self.data}</div>
+        <div class="cart-total" style="
+          border-top: 2px solid #e2e8f0;
+          padding-top: 15px;
+          font-size: 1.2rem;
+          font-weight: 600;
+          text-align: right;
+        ">
+          Total: <span id="cartTotal">$0.00</span>
+        </div>
+      </div>
+    </shopping-cart>
+
+    <cart-item compo-attrs="product,price,quantity,id">
+      <div class="cart-item" id="item-@{id}" style="
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 10px;
+        border: 1px solid #e2e8f0;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        background: #f8fafc;
+      ">
+        <span class="item-name" style="flex: 1; font-weight: 500;">@{product}</span>
+        <span class="item-price" style="font-weight: 600; color: #667eea;">$@{price}</span>
+        <div class="quantity-controls" style="display: flex; align-items: center; gap: 5px;">
+          <button onclick="updateQuantity('@{id}', -1)" style="
+            width: 25px; height: 25px; border: none; background: #e2e8f0; border-radius: 3px; cursor: pointer;
+          ">-</button>
+          <span class="quantity" style="min-width: 30px; text-align: center;">@{quantity}</span>
+          <button onclick="updateQuantity('@{id}', 1)" style="
+            width: 25px; height: 25px; border: none; background: #e2e8f0; border-radius: 3px; cursor: pointer;
+          ">+</button>
+        </div>
+        <button onclick="removeItem('@{id}')" style="
+          background: #fc8181; color: white; border: none; padding: 5px 8px; border-radius: 3px; cursor: pointer;
+        ">🗑️</button>
+      </div>
+    </cart-item>
+
+    <!-- Chat Components -->
+    <chat-container>
+      <div class="chat-container" style="
+        background: white;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        height: 300px;
+        overflow-y: auto;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      ">
+        @{self.data}
+      </div>
+    </chat-container>
+
+    <chat-message compo-attrs="type,time,sender">
+      <div class="chat-message" style="
+        padding: 10px 15px;
+        border-radius: 15px;
+        max-width: 80%;
+        align-self: @{type === 'user' ? 'flex-end' : 'flex-start'};
+        background: @{type === 'user' ? '#667eea' : type === 'admin' ? '#4caf50' : '#e2e8f0'};
+        color: @{type === 'system' ? '#2d3748' : 'white'};
+      ">
+        <div style="font-size: 0.8rem; opacity: 0.8; margin-bottom: 2px;">
+          @{sender} • @{time}
+        </div>
+        <div>@{self.data}</div>
+      </div>
+    </chat-message>
+
+    <!-- Progress Components -->
+    <progress-chart>
+      <div class="progress-chart" style="
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+      ">
+        <h3 style="margin: 0 0 20px 0;">📊 Progress Overview</h3>
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+          @{self.data}
+        </div>
+      </div>
+    </progress-chart>
+
+    <progress-bar compo-attrs="label,value,max,color">
+      <div class="progress-bar" style="margin-bottom: 10px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+          <span style="font-weight: 500;">@{label}</span>
+          <span>@{value}/@{max}</span>
+        </div>
+        <div style="
+          background: #e2e8f0;
+          border-radius: 10px;
+          height: 10px;
+          overflow: hidden;
+        ">
+          <div style="
+            width: @{Math.round((value / max) * 100)}%;
+            height: 100%;
+            background: @{color};
+            transition: width 0.3s ease;
+          "></div>
+        </div>
+      </div>
+    </progress-bar>
+
+    <!-- Game Components -->
+    <guessing-game>
+      <div class="guessing-game" style="
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        border: 2px solid #667eea;
+        text-align: center;
+        max-width: 400px;
+        margin: 0 auto;
+      ">
+        <h3 style="margin: 0 0 20px 0; color: #667eea;">🎮 Number Guessing Game</h3>
+        @{self.data}
+      </div>
+    </guessing-game>
+
+    <game-status compo-attrs="attempts,message">
+      <div class="game-status" style="margin-top: 20px;">
+        <p style="font-size: 1.1rem; margin-bottom: 10px;">@{message}</p>
+        <p style="color: #4a5568;">Attempts: <strong>@{attempts}</strong></p>
+      </div>
+    </game-status>
+
+    <!-- Theme Components -->
+    <themed-component compo-attrs="theme">
+      <div class="themed-component" style="
+        padding: 20px;
+        border-radius: 10px;
+        background: @{theme === 'blue' ? 'linear-gradient(135deg, #667eea, #764ba2)' :
+                     theme === 'green' ? 'linear-gradient(135deg, #4caf50, #45a049)' :
+                     theme === 'purple' ? 'linear-gradient(135deg, #9c27b0, #8e24aa)' :
+                     theme === 'dark' ? 'linear-gradient(135deg, #2d3748, #1a202c)' : 
+                     'linear-gradient(135deg, #667eea, #764ba2)'};
+        color: white;
+      ">
+        @{self.data}
+      </div>
+    </themed-component>
+
+    <theme-card compo-attrs="title,content">
+      <div class="theme-card" style="
+        background: rgba(255,255,255,0.1);
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+      ">
+        <h4 style="margin: 0 0 10px 0;">@{title}</h4>
+        <p style="margin: 0; opacity: 0.9;">@{content}</p>
+      </div>
+    </theme-card>
+
+    <theme-button compo-attrs="action">
+      <button style="
+        background: rgba(255,255,255,0.2);
+        color: white;
+        border: 2px solid rgba(255,255,255,0.3);
+        padding: 10px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: 500;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      " onmouseover="this.style.background='rgba(255,255,255,0.3)'" 
+         onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+        @{self.data}
+      </button>
+    </theme-button>
+  </html-components>
+
+  <script>
+    // Dashboard functionality
+    let userCount = 150;
+    let revenue = 12500;
+    let orders = 89;
+
+    function addUser() {
+      userCount += Math.floor(Math.random() * 10) + 1;
+      const userCountCard = htmlCompo.getComponent('userCount');
+      if (userCountCard) {
+        userCountCard.attr('value', userCount.toString());
+      }
+      
+      // Add a new user to the list
+      const userList = htmlCompo.getComponent('userList');
+      if (userList) {
+        const names = ['David Wilson', 'Emma Davis', 'Frank Miller', 'Grace Lee', 'Henry Taylor'];
+        const roles = ['User', 'Moderator', 'Admin'];
+        const statuses = ['online', 'offline'];
+        
+        const newName = names[Math.floor(Math.random() * names.length)];
+        const newRole = roles[Math.floor(Math.random() * roles.length)];
+        const newStatus = statuses[Math.floor(Math.random() * statuses.length)];
+        
+        const currentHTML = userList.html();
+        const newUserHTML = `<user-item name="${newName}" role="${newRole}" status="${newStatus}"></user-item>`;
+        userList.html(currentHTML + newUserHTML);
+      }
+    }
+
+    function updateStats() {
+      revenue += Math.floor(Math.random() * 1000) + 100;
+      orders += Math.floor(Math.random() * 20) + 1;
+      
+      const revenueCard = htmlCompo.getComponent('revenue');
+      const ordersCard = htmlCompo.getComponent('orders');
+      
+      if (revenueCard) revenueCard.attr('value', `$${revenue.toLocaleString()}`);
+      if (ordersCard) ordersCard.attr('value', orders.toString());
+    }
+
+    function changeTheme() {
+      const theme = document.getElementById('themeSelect').value;
+      const dashboard = document.querySelector('dashboard-widget');
+      if (dashboard) {
+        dashboard.setAttribute('theme', theme);
+      }
+    }
+
+    // Shopping cart functionality
+    let cartItems = {};
+    let cartTotal = 0;
+
+    function addToCart(product, price, id) {
+      if (cartItems[id]) {
+        cartItems[id].quantity++;
+      } else {
+        cartItems[id] = { product, price, quantity: 1 };
+      }
+      
+      updateCartDisplay();
+    }
+
+    function updateQuantity(id, change) {
+      if (cartItems[id]) {
+        cartItems[id].quantity += change;
+        if (cartItems[id].quantity <= 0) {
+          delete cartItems[id];
+        }
+        updateCartDisplay();
+      }
+    }
+
+    function removeItem(id) {
+      delete cartItems[id];
+      updateCartDisplay();
+    }
+
+    function clearCart() {
+      cartItems = {};
+      updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+      const cart = htmlCompo.getComponent('cart');
+      if (!cart) return;
+      
+      let cartHTML = '';
+      cartTotal = 0;
+      
+      for (const [id, item] of Object.entries(cartItems)) {
+        cartHTML += `<cart-item product="${item.product}" price="${item.price}" quantity="${item.quantity}" id="${id}"></cart-item>`;
+        cartTotal += item.price * item.quantity;
+      }
+      
+      if (cartHTML === '') {
+        cartHTML = '<div style="text-align: center; color: #9e9e9e; padding: 20px;">Your cart is empty</div>';
+      }
+      
+      cart.html(cartHTML);
+      
+      const totalElement = document.getElementById('cartTotal');
+      if (totalElement) {
+        totalElement.textContent = `$${cartTotal.toFixed(2)}`;
+      }
+    }
+
+    // Chat functionality
+    function sendMessage() {
+      const input = document.getElementById('messageInput');
+      const typeSelect = document.getElementById('messageType');
+      const message = input.value.trim();
+      
+      if (!message) return;
+      
+      const chatContainer = htmlCompo.getComponent('chatContainer');
+      if (chatContainer) {
+        const now = new Date();
+        const time = now.getHours().toString().padStart(2, '0') + ':' + 
+                    now.getMinutes().toString().padStart(2, '0');
+        
+        const sender = typeSelect.value === 'user' ? 'You' : 
+                      typeSelect.value === 'admin' ? 'Admin' : 'System';
+        
+        const currentHTML = chatContainer.html();
+        const newMessageHTML = `<chat-message type="${typeSelect.value}" time="${time}" sender="${sender}">${message}</chat-message>`;
+        chatContainer.html(currentHTML + newMessageHTML);
+        
+        // Auto-scroll to bottom
+        const container = chatContainer.node.querySelector('.chat-container');
+        if (container) {
+          container.scrollTop = container.scrollHeight;
+        }
+      }
+      
+      input.value = '';
+    }
+
+    // Progress chart functionality
+    function updateProgress() {
+      const progressBars = ['progress1', 'progress2', 'progress3'];
+      progressBars.forEach(id => {
+        const bar = htmlCompo.getComponent(id);
+        if (bar) {
+          const newValue = Math.floor(Math.random() * 100);
+          bar.attr('value', newValue.toString());
+        }
+      });
+    }
+
+    function addDataPoint() {
+      const chart = htmlCompo.getComponent('mainChart');
+      if (chart) {
+        const labels = ['Development', 'Testing', 'Design', 'Research'];
+        const colors = ['#e91e63', '#00bcd4', '#ff5722', '#795548'];
+        const randomLabel = labels[Math.floor(Math.random() * labels.length)];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        const randomValue = Math.floor(Math.random() * 100);
+        
+        const currentHTML = chart.html();
+        const newBarHTML = `<progress-bar label="${randomLabel}" value="${randomValue}" max="100" color="${randomColor}"></progress-bar>`;
+        chart.html(currentHTML + newBarHTML);
+      }
+    }
+
+    function resetChart() {
+      const chart = htmlCompo.getComponent('mainChart');
+      if (chart) {
+        chart.html(`
+          <progress-bar ref="progress1" label="Sales" value="75" max="100" color="#4caf50"></progress-bar>
+          <progress-bar ref="progress2" label="Marketing" value="60" max="100" color="#2196f3"></progress-bar>
+          <progress-bar ref="progress3" label="Support" value="90" max="100" color="#ff9800"></progress-bar>
+        `);
+      }
+    }
+
+    // Game functionality
+    let targetNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function makeGuess() {
+      const input = document.getElementById('guessInput');
+      const guess = parseInt(input.value);
+      
+      if (isNaN(guess) || guess < 1 || guess > 100) {
+        alert('Please enter a number between 1 and 100');
+        return;
+      }
+      
+      attempts++;
+      let message;
+      
+      if (guess === targetNumber) {
+        message = `🎉 Congratulations! You guessed it in ${attempts} attempts!`;
+      } else if (guess < targetNumber) {
+        message = `📈 Too low! Try a higher number.`;
+      } else {
+        message = `📉 Too high! Try a lower number.`;
+      }
+      
+      const status = htmlCompo.getComponent('gameStatus');
+      if (status) {
+        status.attr('attempts', attempts.toString());
+        status.attr('message', message);
+      }
+      
+      input.value = '';
+    }
+
+    function newGame() {
+      targetNumber = Math.floor(Math.random() * 100) + 1;
+      attempts = 0;
+      
+      const status = htmlCompo.getComponent('gameStatus');
+      if (status) {
+        status.attr('attempts', '0');
+        status.attr('message', 'Guess a number between 1 and 100!');
+      }
+      
+      document.getElementById('guessInput').value = '';
+    }
+
+    // Theme functionality
+    function setTheme(theme) {
+      const themedDemo = htmlCompo.getComponent('themedDemo');
+      if (themedDemo) {
+        themedDemo.attr('theme', theme);
+      }
+    }
+
+    // Initialize cart display
+    updateCartDisplay();
+
+    // Add enter key support for message input
+    document.getElementById('messageInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    // Add enter key support for game input
+    document.getElementById('guessInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        makeGuess();
+      }
+    });
+  </script>
+</body>
+</html>

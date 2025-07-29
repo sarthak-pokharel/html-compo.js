@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML-COMPO.js - Getting Started</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="//cdn.jsdelivr.net/npm/html-compo@latest"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f8fafc;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 3rem 0;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .subtitle {
+      font-size: 1.3rem;
+      opacity: 0.9;
+    }
+    
+    main {
+      padding: 3rem 0;
+    }
+    
+    .step {
+      background: white;
+      margin-bottom: 3rem;
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    
+    .step-number {
+      position: absolute;
+      top: -20px;
+      left: 30px;
+      background: #667eea;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    
+    h2 {
+      font-size: 2rem;
+      color: #2d3748;
+      margin-bottom: 1rem;
+    }
+    
+    .code-block {
+      background: #1a202c;
+      color: #e2e8f0;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    
+    .demo-area {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 1.5rem 0;
+    }
+    
+    .demo-area h4 {
+      color: #4a5568;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    
+    .success {
+      background: #f0fff4;
+      border-left: 4px solid #4caf50;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 5px 5px 0;
+    }
+    
+    .tip {
+      background: #fffbf0;
+      border-left: 4px solid #ff9800;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 5px 5px 0;
+    }
+    
+    .next-steps {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    
+    .next-steps h3 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+    
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .link-button {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      text-decoration: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .link-button:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+    
+    code {
+      background: #e2e8f0;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 0.9em;
+    }
+    
+    ul {
+      margin: 1rem 0;
+      padding-left: 2rem;
+    }
+    
+    li {
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Getting Started</h1>
+      <p class="subtitle">Learn HTML-COMPO.js in 5 minutes</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="step">
+      <div class="step-number">1</div>
+      <h2>Include the Library</h2>
+      <p>Add HTML-COMPO.js to your HTML page. That's it - no build tools, no complex setup!</p>
+      
+      <div class="code-block">
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My First HTML-COMPO App&lt;/title&gt;
+  &lt;script src="//cdn.jsdelivr.net/npm/html-compo@latest"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Your content goes here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+      </div>
+      
+      <div class="success">
+        ✅ <strong>You're ready!</strong> HTML-COMPO.js is now available in your page.
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">2</div>
+      <h2>Create Your First Component</h2>
+      <p>Define a component using the <code>&lt;html-components&gt;</code> container and use <code>@{self.data}</code> to access the content.</p>
+      
+      <div class="code-block">
+        <pre>&lt;!-- Define the component --&gt;
+&lt;html-components&gt;
+  &lt;welcome-card&gt;
+    &lt;div style="border: 2px solid #667eea; padding: 20px; border-radius: 10px; text-align: center;"&gt;
+      &lt;h2&gt;Welcome, @{self.data}! 🎉&lt;/h2&gt;
+      &lt;p&gt;Thanks for trying HTML-COMPO.js&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/welcome-card&gt;
+&lt;/html-components&gt;
+
+&lt;!-- Use the component --&gt;
+&lt;welcome-card&gt;John&lt;/welcome-card&gt;
+&lt;welcome-card&gt;Sarah&lt;/welcome-card&gt;</pre>
+      </div>
+      
+      <div class="demo-area">
+        <h4>Live Demo:</h4>
+        <welcome-card>John</welcome-card>
+        <welcome-card>Sarah</welcome-card>
+      </div>
+      
+      <div class="tip">
+        💡 <strong>Tip:</strong> You can also use <code>&lt;h-c&gt;</code> as a shorter alias for <code>&lt;html-components&gt;</code>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">3</div>
+      <h2>Add Component Attributes</h2>
+      <p>Make your components configurable by using the <code>compo-attrs</code> attribute to specify which HTML attributes should be available as variables.</p>
+      
+      <div class="code-block">
+        <pre>&lt;html-components&gt;
+  &lt;user-profile compo-attrs="name,role,department"&gt;
+    &lt;div style="background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid #667eea;"&gt;
+      &lt;h3&gt;@{name}&lt;/h3&gt;
+      &lt;p&gt;&lt;strong&gt;Role:&lt;/strong&gt; @{role}&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;Department:&lt;/strong&gt; @{department}&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/user-profile&gt;
+&lt;/html-components&gt;
+
+&lt;user-profile name="Alice Johnson" role="Senior Developer" department="Engineering"&gt;&lt;/user-profile&gt;
+&lt;user-profile name="Bob Smith" role="Product Manager" department="Product"&gt;&lt;/user-profile&gt;</pre>
+      </div>
+      
+      <div class="demo-area">
+        <h4>Live Demo:</h4>
+        <user-profile name="Alice Johnson" role="Senior Developer" department="Engineering"></user-profile>
+        <user-profile name="Bob Smith" role="Product Manager" department="Product"></user-profile>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">4</div>
+      <h2>Set Default Values</h2>
+      <p>Provide default values for attributes using the <code>attribute=defaultValue</code> syntax in <code>compo-attrs</code>.</p>
+      
+      <div class="code-block">
+        <pre>&lt;html-components&gt;
+  &lt;status-badge compo-attrs="status=active,color=#4caf50"&gt;
+    &lt;span style="background: @{color}; color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.8rem;"&gt;
+      @{status}
+    &lt;/span&gt;
+  &lt;/status-badge&gt;
+&lt;/html-components&gt;
+
+&lt;status-badge&gt;&lt;/status-badge&gt; &lt;!-- Uses defaults --&gt;
+&lt;status-badge status="inactive" color="#f44336"&gt;&lt;/status-badge&gt;
+&lt;status-badge status="pending" color="#ff9800"&gt;&lt;/status-badge&gt;</pre>
+      </div>
+      
+      <div class="demo-area">
+        <h4>Live Demo:</h4>
+        <status-badge></status-badge>
+        <status-badge status="inactive" color="#f44336"></status-badge>
+        <status-badge status="pending" color="#ff9800"></status-badge>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">5</div>
+      <h2>Interactive Components</h2>
+      <p>Add interactivity by using component references and the global <code>htmlCompo</code> API.</p>
+      
+      <div class="code-block">
+        <pre>&lt;html-components&gt;
+  &lt;click-counter compo-attrs="count=0"&gt;
+    &lt;div style="text-align: center; padding: 20px; border: 2px solid #e2e8f0; border-radius: 10px;"&gt;
+      &lt;h3&gt;Counter: @{count}&lt;/h3&gt;
+      &lt;button onclick="incrementCounter('@{self.componentName}')" 
+              style="background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;"&gt;
+        Click me!
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/click-counter&gt;
+&lt;/html-components&gt;
+
+&lt;click-counter ref="myCounter"&gt;&lt;/click-counter&gt;
+
+&lt;script&gt;
+function incrementCounter(componentName) {
+  const counter = htmlCompo.getComponent('myCounter');
+  if (counter) {
+    const currentCount = parseInt(counter.attr('count')) + 1;
+    counter.attr('count', currentCount.toString());
+  }
+}
+&lt;/script&gt;</pre>
+      </div>
+      
+      <div class="demo-area">
+        <h4>Live Demo:</h4>
+        <click-counter ref="myCounter"></click-counter>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">6</div>
+      <h2>Build Something Amazing!</h2>
+      <p>Now you know the basics! Here are some ideas for what you can build:</p>
+      
+      <ul>
+        <li><strong>Form Components:</strong> Input fields, buttons, validation messages</li>
+        <li><strong>Layout Components:</strong> Cards, modals, navigation menus</li>
+        <li><strong>Data Components:</strong> Tables, lists, charts</li>
+        <li><strong>Interactive Widgets:</strong> Calendars, sliders, tabs</li>
+      </ul>
+      
+      <div class="code-block">
+        <pre>&lt;!-- Example: A complete card component --&gt;
+&lt;html-components&gt;
+  &lt;info-card compo-attrs="title,type=info,actions=false"&gt;
+    &lt;div style="border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; background: white;"&gt;
+      &lt;div style="background: @{type === 'success' ? '#4caf50' : type === 'warning' ? '#ff9800' : '#2196f3'}; 
+                  color: white; padding: 15px;"&gt;
+        &lt;h3 style="margin: 0;"&gt;@{title}&lt;/h3&gt;
+      &lt;/div&gt;
+      &lt;div style="padding: 20px;"&gt;
+        @{self.data}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/info-card&gt;
+&lt;/html-components&gt;
+
+&lt;info-card title="Success!" type="success"&gt;
+  Your component is working perfectly! 🎉
+&lt;/info-card&gt;</pre>
+      </div>
+      
+      <div class="demo-area">
+        <h4>Live Demo:</h4>
+        <info-card title="Success!" type="success">
+          Your component is working perfectly! 🎉
+        </info-card>
+      </div>
+    </div>
+
+    <div class="next-steps">
+      <h3>🚀 Ready for More?</h3>
+      <p>You've mastered the basics! Explore advanced features and real-world examples.</p>
+      
+      <div class="links">
+        <a href="./documentation.html" class="link-button">📚 Full Documentation</a>
+        <a href="./examples.html" class="link-button">🎮 Interactive Examples</a>
+        <a href="./quick-reference.md" class="link-button">⚡ Quick Reference</a>
+        <a href="../TYPESCRIPT.md" class="link-button">🔷 TypeScript Guide</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Component Definitions for this page -->
+  <html-components>
+    <welcome-card>
+      <div style="border: 2px solid #667eea; padding: 20px; border-radius: 10px; text-align: center; margin: 10px 0; background: #f8fafc;">
+        <h2 style="margin: 0 0 10px 0; color: #667eea;">Welcome, @{self.data}! 🎉</h2>
+        <p style="margin: 0; color: #4a5568;">Thanks for trying HTML-COMPO.js</p>
+      </div>
+    </welcome-card>
+    
+    <user-profile compo-attrs="name,role,department">
+      <div style="background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid #667eea; margin: 10px 0;">
+        <h3 style="margin: 0 0 10px 0; color: #2d3748;">@{name}</h3>
+        <p style="margin: 5px 0; color: #4a5568;"><strong>Role:</strong> @{role}</p>
+        <p style="margin: 5px 0; color: #4a5568;"><strong>Department:</strong> @{department}</p>
+      </div>
+    </user-profile>
+    
+    <status-badge compo-attrs="status=active,color=#4caf50">
+      <span style="background: @{color}; color: white; padding: 4px 12px; border-radius: 12px; font-size: 0.8rem; margin: 0 5px;">
+        @{status}
+      </span>
+    </status-badge>
+    
+    <click-counter compo-attrs="count=0">
+      <div style="text-align: center; padding: 20px; border: 2px solid #e2e8f0; border-radius: 10px; background: white;">
+        <h3 style="margin: 0 0 15px 0; color: #2d3748;">Counter: @{count}</h3>
+        <button onclick="incrementCounter()" 
+                style="background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 500;">
+          Click me!
+        </button>
+      </div>
+    </click-counter>
+    
+    <info-card compo-attrs="title,type=info,actions=false">
+      <div style="border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; background: white; margin: 10px 0;">
+        <div style="background: @{type === 'success' ? '#4caf50' : type === 'warning' ? '#ff9800' : '#2196f3'}; color: white; padding: 15px;">
+          <h3 style="margin: 0;">@{title}</h3>
+        </div>
+        <div style="padding: 20px;">
+          @{self.data}
+        </div>
+      </div>
+    </info-card>
+  </html-components>
+
+  <script>
+    function incrementCounter() {
+      const counter = htmlCompo.getComponent('myCounter');
+      if (counter) {
+        const currentCount = parseInt(counter.attr('count')) + 1;
+        counter.attr('count', currentCount.toString());
+      }
+    }
+  </script>
+</body>
+</html>

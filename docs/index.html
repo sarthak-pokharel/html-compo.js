@@ -1,130 +1,483 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>HTML-COMPO.js</title>
-  <link rel="stylesheet" type="text/css" href="./css/style.css">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML-COMPO.js - Documentation Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="//cdn.jsdelivr.net/npm/html-compo@latest"></script>
-  <script src="./libs/run_prettify.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-  <link rel="manifest" href="./webmanifest.json">
-  <link rel="icon" href="icons/Sarthak_200x200.png" type="image/png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f8fafc;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 4rem 0;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .subtitle {
+      font-size: 1.5rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+    
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      opacity: 0.8;
+    }
+    
+    main {
+      padding: 4rem 0;
+    }
+    
+    .quick-demo {
+      background: white;
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+    
+    .quick-demo h2 {
+      font-size: 2.5rem;
+      color: #2d3748;
+      margin-bottom: 1rem;
+    }
+    
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+      align-items: start;
+    }
+    
+    .code-block {
+      background: #1a202c;
+      color: #e2e8f0;
+      padding: 1.5rem;
+      border-radius: 10px;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      text-align: left;
+    }
+    
+    .demo-output {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: left;
+    }
+    
+    .demo-output h4 {
+      color: #4a5568;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .doc-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      border: 2px solid transparent;
+    }
+    
+    .doc-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      border-color: #667eea;
+    }
+    
+    .doc-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .doc-card h3 {
+      font-size: 1.8rem;
+      color: #2d3748;
+      margin-bottom: 1rem;
+    }
+    
+    .doc-card p {
+      color: #4a5568;
+      margin-bottom: 1.5rem;
+    }
+    
+    .doc-features {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .doc-features li {
+      color: #667eea;
+      margin: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    
+    .doc-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #4caf50;
+      font-weight: bold;
+    }
+    
+    .features-section {
+      background: white;
+      padding: 4rem 0;
+      margin: 4rem 0;
+      border-radius: 15px;
+    }
+    
+    .features-section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #2d3748;
+      margin-bottom: 3rem;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .feature-card {
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .feature-card h4 {
+      font-size: 1.3rem;
+      color: #2d3748;
+      margin-bottom: 1rem;
+    }
+    
+    .cta-section {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 4rem 0;
+      text-align: center;
+      border-radius: 15px;
+      margin: 4rem 0;
+    }
+    
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .cta-button {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .cta-button:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+    
+    .cta-button.primary {
+      background: white;
+      color: #667eea;
+    }
+    
+    .cta-button.primary:hover {
+      background: #f8fafc;
+    }
+    
+    footer {
+      background: #2d3748;
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-stats {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .demo-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .docs-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
 <body>
-  <app-root>
-    <h1>HTML-Compo.js</h1>
-      <p>
-        Reuse the html components! With html-compo, you can reuse the html components. The library is superfast and performant!
-        The <code><o-t>html-components</o-t></code> tag is used as components defination container. As an alternative <code><o-t>h-c</o-t></code> tag can be used instead of long <code><o-t>html-components</o-t></code> tag
-      </p>
-      <div>
-<html-code>
-<o-t>user-data</o-t>
-  Jhon
-<c-t>user-data</c-t>
-<o-t>user-data</o-t>
-  Harry
-<c-t>user-data</c-t>
-
-<o-t>html-components</o-t>
-  <o-t>user-data</o-t>
-    <o-t>div</o-t>
-      User Name : <o-t>b</o-t>*@{self.data}<c-t>b</c-t>
-    <c-t>div</c-t>
-  <c-t>user-data</c-t>
-<c-t>html-components</c-t>
-</html-code>
-        <code-output>
-          <div>User Name: <b>Jhon</b></div>
-          <div>User Name: <b>Harry</b></div>
-        </code-output>
+  <header>
+    <div class="container">
+      <h1>HTML-COMPO.js</h1>
+      <p class="subtitle">Create reusable HTML components without the complexity</p>
+      
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-number">0kb</div>
+          <div class="stat-label">Build Tools</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">5min</div>
+          <div class="stat-label">Setup Time</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Possibilities</div>
+        </div>
       </div>
-      <br/><br/>
-      <div>
-        You can use <i>compo-attrs</i> attribute to watch specific attrubutes while using components
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="quick-demo">
+      <h2>See It In Action</h2>
+      <p>Create reusable components with just HTML - no JavaScript frameworks required!</p>
+      
+      <div class="demo-grid">
+        <div class="code-block">
+          <pre>&lt;!-- Define once --&gt;
+&lt;html-components&gt;
+  &lt;user-card compo-attrs="name,role"&gt;
+    &lt;div class="card"&gt;
+      &lt;h3&gt;@{name}&lt;/h3&gt;
+      &lt;p&gt;@{role}&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/user-card&gt;
+&lt;/html-components&gt;
+
+&lt;!-- Use everywhere --&gt;
+&lt;user-card name="Alice" role="Developer"&gt;&lt;/user-card&gt;
+&lt;user-card name="Bob" role="Designer"&gt;&lt;/user-card&gt;</pre>
+        </div>
+        
+        <div class="demo-output">
+          <h4>Live Output:</h4>
+          <user-card name="Alice" role="Developer"></user-card>
+          <user-card name="Bob" role="Designer"></user-card>
+        </div>
       </div>
-      <div>
-<html-code>
-<o-t>user-detail 
-  name="Jhon" 
-  contactnum="0682936273" 
-  description="Jhon is a very versatile employee"</o-t><c-t>user-detail</c-t>
-<o-t>user-detail 
-  name="Harry" 
-  contactnum="082665623" 
-  description="Jhon is a very smart employee"</o-t><c-t>user-detail</c-t>
+    </section>
 
-<o-t>html-components</o-t>
-  <o-t>user-detail compo-attrs="name, contactnum,description"</o-t>
-    User Name: *@{name}
-    <o-t>br/</o-t>
-    Contact Number: *@{contactnum}
-    <o-t>br/</o-t>
-    Description: *@{description}
-    <o-t>br/</o-t>
-    <o-t>br/</o-t>
-  <c-t>user-detail</c-t>
-<c-t>html-components</c-t>
+    <section class="docs-grid">
+      <a href="./getting-started.html" class="doc-card">
+        <div class="doc-icon">🚀</div>
+        <h3>Getting Started</h3>
+        <p>Learn the basics in 5 minutes with our step-by-step guide.</p>
+        <ul class="doc-features">
+          <li>Zero setup required</li>
+          <li>Interactive examples</li>
+          <li>Progressive learning</li>
+          <li>Copy-paste ready code</li>
+        </ul>
+      </a>
 
-</html-code>
-<br/><br/>
-<code-output>
-  <user-detail name="Jhon" contactnum="0682936273" description="Jhon is a very versatile employee"></user-detail>
-  <user-detail name="Harry" contactnum="082665623" description="Harry is a very smart employee"></user-detail> 
-</code-output>
+      <a href="./documentation.html" class="doc-card">
+        <div class="doc-icon">📚</div>
+        <h3>Complete Documentation</h3>
+        <p>Comprehensive guide covering all features and advanced use cases.</p>
+        <ul class="doc-features">
+          <li>API reference</li>
+          <li>Advanced patterns</li>
+          <li>Best practices</li>
+          <li>TypeScript support</li>
+        </ul>
+      </a>
+
+      <a href="./examples.html" class="doc-card">
+        <div class="doc-icon">🎮</div>
+        <h3>Interactive Examples</h3>
+        <p>Real-world demos you can interact with and learn from.</p>
+        <ul class="doc-features">
+          <li>Dashboard components</li>
+          <li>Shopping cart</li>
+          <li>Chat interface</li>
+          <li>Data visualization</li>
+        </ul>
+      </a>
+
+      <a href="./quick-reference.md" class="doc-card">
+        <div class="doc-icon">⚡</div>
+        <h3>Quick Reference</h3>
+        <p>Cheat sheet for quick lookup of syntax and patterns.</p>
+        <ul class="doc-features">
+          <li>Syntax overview</li>
+          <li>Common patterns</li>
+          <li>API methods</li>
+          <li>Troubleshooting</li>
+        </ul>
+      </a>
+    </section>
+
+    <section class="features-section">
+      <div class="container">
+        <h2>Why Choose HTML-COMPO.js?</h2>
+        
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h4>Zero Dependencies</h4>
+            <p>Pure JavaScript with no external dependencies. Works in any browser.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h4>Instant Setup</h4>
+            <p>Add one script tag and start creating components immediately.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">📝</div>
+            <h4>Familiar Syntax</h4>
+            <p>Use HTML you already know with simple @{variable} templating.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">🔧</div>
+            <h4>Flexible</h4>
+            <p>Attribute binding, default values, and Shadow DOM support.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h4>Style Encapsulation</h4>
+            <p>Optional Shadow DOM for truly encapsulated component styles.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">🔷</div>
+            <h4>TypeScript Ready</h4>
+            <p>Full type definitions and TypeScript source included.</p>
+          </div>
+        </div>
       </div>
-      <br/><br/>
-      For default value of compo-attr, the follwing example is shown.
-      <html-code>
-<show-elem elem="food-component"></show-elem>
-<o-t>br</o-t>
-<o-t>food-component foodname="Burger" rating="4.9"</o-t><c-t>food-component</c-t>
+    </section>
 
-<o-t>h-c</o-t><o-t>!-- alternative to html-components tag --</o-t>
-  <o-t>food-component compo-attrs="foodname=Pizza"</o-t>
-    FoodName: @{foodname}, Rating: @{rating};
-  <c-t>food-component</c-t>
-<c-t>h-c</c-t>
-      </html-code>
-      <code-output>
-        FoodName: Pizza, Rating: 5;
-        <br/>
-        FoodName: Burger, Rating: 4.9;
-      </code-output>
-  </app-root>
+    <section class="cta-section">
+      <div class="container">
+        <h2>Ready to Build?</h2>
+        <p>Start creating reusable components in your next project today.</p>
+        
+        <div class="cta-buttons">
+          <a href="./getting-started.html" class="cta-button primary">Get Started</a>
+          <a href="./examples.html" class="cta-button">See Examples</a>
+          <a href="https://github.com/SarthakWhenever/html-compo.js" class="cta-button">View on GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 HTML-COMPO.js | Created by <a href="https://github.com/SarthakWhenever" style="color: #63b3ed;">Sarthak Pokharel</a></p>
+    </div>
+  </footer>
+
+  <!-- Demo component definition -->
   <html-components>
-    <app-root>
-      @{self.data}
-    </app-root>
-    <user-detail compo-attrs="name, contactnum,description">  
-        User Name: @{name}
-        <br/>  
-        Contact Number: @{contactnum}
-        <br/>  
-        Description: @{description}
-        <br/>  
-        <br/>
-      </user-detail> 
-
-    <!--Further Components-->
-    <html-code>
-      <pre class="prettyprint lang-html"> @{self.data} </pre>
-    </html-code>
-    <x-code><pre class="prettyprint">@{self.data}</pre></x-code>
-    <o-t>&lt;@{self.data}&gt;</o-t>
-    <c-t>&lt;/@{self.data}&gt;</c-t>
-    <code-output>
-      <br/>
-      Output: 
-      <div class="outp-cust">
-        @{self.data}
+    <user-card compo-attrs="name,role">
+      <div style="
+        background: white;
+        border: 2px solid #667eea;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px 0;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      ">
+        <h3 style="margin: 0 0 10px 0; color: #2d3748;">@{name}</h3>
+        <p style="margin: 0; color: #667eea; font-weight: 500;">@{role}</p>
       </div>
-    </code-output>
-    <show-elem compo-attrs="elem">&lt;@{elem}&gt;@{self.data}&lt;/@{elem}&gt;</show-elem>
+    </user-card>
   </html-components>
-  <script src="./js/script.js"></script>
 </body>
 </html>

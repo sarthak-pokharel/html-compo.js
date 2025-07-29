@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML-COMPO.js - Documentation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="//cdn.jsdelivr.net/npm/html-compo@latest"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f8fafc;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
+    nav {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    nav a {
+      text-decoration: none;
+      color: #4a5568;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    
+    nav a:hover {
+      background: #e2e8f0;
+      color: #2d3748;
+    }
+    
+    main {
+      padding: 3rem 0;
+    }
+    
+    section {
+      background: white;
+      margin-bottom: 3rem;
+      padding: 2.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    
+    h2 {
+      font-size: 2.5rem;
+      color: #2d3748;
+      margin-bottom: 1.5rem;
+      border-bottom: 3px solid #667eea;
+      padding-bottom: 0.5rem;
+    }
+    
+    h3 {
+      font-size: 1.8rem;
+      color: #4a5568;
+      margin: 2rem 0 1rem 0;
+    }
+    
+    h4 {
+      font-size: 1.3rem;
+      color: #2d3748;
+      margin: 1.5rem 0 0.8rem 0;
+    }
+    
+    p {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    
+    .code-block {
+      background: #1a202c;
+      color: #e2e8f0;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      overflow-x: auto;
+      position: relative;
+    }
+    
+    .code-block pre {
+      margin: 0;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    
+    .output-block {
+      background: #f7fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+    
+    .output-block::before {
+      content: "Output:";
+      font-weight: 600;
+      color: #4a5568;
+      display: block;
+      margin-bottom: 1rem;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .feature-card {
+      background: #f8fafc;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+    
+    .feature-card h4 {
+      color: #667eea;
+      margin-top: 0;
+    }
+    
+    .api-method {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+    
+    .method-signature {
+      font-family: 'Monaco', 'Consolas', monospace;
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 0.8rem;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+    
+    .parameter {
+      margin: 0.5rem 0;
+      padding-left: 1rem;
+    }
+    
+    .parameter-name {
+      font-weight: 600;
+      color: #4a5568;
+    }
+    
+    .parameter-type {
+      background: #e2e8f0;
+      color: #2d3748;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 0.8rem;
+    }
+    
+    code {
+      background: #e2e8f0;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 0.9em;
+    }
+    
+    .warning {
+      background: #fed7d7;
+      border: 1px solid #fc8181;
+      color: #c53030;
+      padding: 1rem;
+      border-radius: 5px;
+      margin: 1rem 0;
+    }
+    
+    .info {
+      background: #bee3f8;
+      border: 1px solid #63b3ed;
+      color: #2c5282;
+      padding: 1rem;
+      border-radius: 5px;
+      margin: 1rem 0;
+    }
+    
+    .installation-tabs {
+      display: flex;
+      margin-bottom: 1rem;
+    }
+    
+    .tab {
+      background: #e2e8f0;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px 5px 0 0;
+      margin-right: 0.2rem;
+    }
+    
+    .tab.active {
+      background: #667eea;
+      color: white;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    footer {
+      background: #2d3748;
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      section {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>HTML-COMPO.js</h1>
+      <p class="subtitle">Create reusable HTML components with ease</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="container">
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#quick-start">Quick Start</a></li>
+        <li><a href="#basic-usage">Basic Usage</a></li>
+        <li><a href="#attributes">Attributes</a></li>
+        <li><a href="#shadow-dom">Shadow DOM</a></li>
+        <li><a href="#api">API Reference</a></li>
+        <li><a href="#examples">Examples</a></li>
+        <li><a href="#typescript">TypeScript</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section id="installation">
+      <h2>Installation</h2>
+      <p>HTML-COMPO.js is a lightweight library for creating reusable HTML components without any build tools or complex setup.</p>
+      
+      <div class="installation-tabs">
+        <div class="tab active" onclick="showTab('cdn')">CDN</div>
+        <div class="tab" onclick="showTab('npm')">NPM</div>
+        <div class="tab" onclick="showTab('download')">Download</div>
+      </div>
+      
+      <div id="cdn" class="tab-content active">
+        <div class="code-block">
+          <pre>&lt;script src="//cdn.jsdelivr.net/npm/html-compo@latest"&gt;&lt;/script&gt;</pre>
+        </div>
+      </div>
+      
+      <div id="npm" class="tab-content">
+        <div class="code-block">
+          <pre>npm install html-compo</pre>
+        </div>
+        <p>Then include in your project:</p>
+        <div class="code-block">
+          <pre>import 'html-compo';</pre>
+        </div>
+      </div>
+      
+      <div id="download" class="tab-content">
+        <p>Download the latest version from <a href="https://github.com/SarthakWhenever/html-compo.js">GitHub</a> and include it in your project:</p>
+        <div class="code-block">
+          <pre>&lt;script src="path/to/html-compo.js"&gt;&lt;/script&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="quick-start">
+      <h2>Quick Start</h2>
+      <p>Get started with HTML-COMPO.js in just a few steps:</p>
+      
+      <h3>1. Include the library</h3>
+      <div class="code-block">
+        <pre>&lt;script src="//cdn.jsdelivr.net/npm/html-compo@latest"&gt;&lt;/script&gt;</pre>
+      </div>
+      
+      <h3>2. Define your components</h3>
+      <div class="code-block">
+        <pre>&lt;html-components&gt;
+  &lt;user-card&gt;
+    &lt;div class="card"&gt;
+      &lt;h3&gt;@{self.data}&lt;/h3&gt;
+    &lt;/div&gt;
+  &lt;/user-card&gt;
+&lt;/html-components&gt;</pre>
+      </div>
+      
+      <h3>3. Use your components</h3>
+      <div class="code-block">
+        <pre>&lt;user-card&gt;John Doe&lt;/user-card&gt;
+&lt;user-card&gt;Jane Smith&lt;/user-card&gt;</pre>
+      </div>
+      
+      <div class="output-block">
+        <user-card>John Doe</user-card>
+        <user-card>Jane Smith</user-card>
+      </div>
+    </section>
+
+    <section id="basic-usage">
+      <h2>Basic Usage</h2>
+      
+      <h3>Component Definition Container</h3>
+      <p>Use <code>&lt;html-components&gt;</code> or the shorter <code>&lt;h-c&gt;</code> tag to define your components:</p>
+      
+      <div class="code-block">
+        <pre>&lt;html-components&gt;
+  &lt;my-button&gt;
+    &lt;button class="btn"&gt;@{self.data}&lt;/button&gt;
+  &lt;/my-button&gt;
+&lt;/html-components&gt;
+
+&lt;!-- Alternative shorter syntax --&gt;
+&lt;h-c&gt;
+  &lt;my-button&gt;
+    &lt;button class="btn"&gt;@{self.data}&lt;/button&gt;
+  &lt;/my-button&gt;
+&lt;/h-c&gt;</pre>
+      </div>
+      
+      <h3>Template Variables</h3>
+      <p>Use <code>@{variable}</code> syntax to insert dynamic content:</p>
+      
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>@{self.data}</h4>
+          <p>The content inside the component tag when used</p>
+        </div>
+        <div class="feature-card">
+          <h4>@{self.componentName}</h4>
+          <p>The tag name of the component</p>
+        </div>
+        <div class="feature-card">
+          <h4>@{attributeName}</h4>
+          <p>Values from component attributes (when using compo-attrs)</p>
+        </div>
+      </div>
+      
+      <h3>Basic Example</h3>
+      <div class="code-block">
+        <pre>&lt;greeting-card&gt;Hello, World!&lt;/greeting-card&gt;
+&lt;greeting-card&gt;Welcome to HTML-COMPO.js&lt;/greeting-card&gt;
+
+&lt;html-components&gt;
+  &lt;greeting-card&gt;
+    &lt;div class="greeting"&gt;
+      &lt;h2&gt;🎉 @{self.data} 🎉&lt;/h2&gt;
+      &lt;p&gt;This is a @{self.componentName} component!&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/greeting-card&gt;
+&lt;/html-components&gt;</pre>
+      </div>
+      
+      <div class="output-block">
+        <greeting-card>Hello, World!</greeting-card>
+        <greeting-card>Welcome to HTML-COMPO.js</greeting-card>
+      </div>
+    </section>
+
+    <section id="attributes">
+      <h2>Component Attributes</h2>
+      
+      <h3>Using compo-attrs</h3>
+      <p>The <code>compo-attrs</code> attribute allows you to specify which attributes should be passed as variables to your component template:</p>
+      
+      <div class="code-block">
+        <pre>&lt;user-profile name="John Doe" email="john@example.com" role="Admin"&gt;&lt;/user-profile&gt;
+&lt;user-profile name="Jane Smith" email="jane@example.com" role="User"&gt;&lt;/user-profile&gt;
+
+&lt;html-components&gt;
+  &lt;user-profile compo-attrs="name,email,role"&gt;
+    &lt;div class="profile"&gt;
+      &lt;h3&gt;@{name}&lt;/h3&gt;
+      &lt;p&gt;Email: @{email}&lt;/p&gt;
+      &lt;p&gt;Role: @{role}&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/user-profile&gt;
+&lt;/html-components&gt;</pre>
+      </div>
+      
+      <div class="output-block">
+        <user-profile name="John Doe" email="john@example.com" role="Admin"></user-profile>
+        <user-profile name="Jane Smith" email="jane@example.com" role="User"></user-profile>
+      </div>
+      
+      <h3>Default Attribute Values</h3>
+      <p>You can provide default values for attributes using the <code>attributeName=defaultValue</code> syntax:</p>
+      
+      <div class="code-block">
+        <pre>&lt;product-card name="Laptop" price="999"&gt;&lt;/product-card&gt;
+&lt;product-card name="Phone"&gt;&lt;/product-card&gt; &lt;!-- Uses default price --&gt;
+
+&lt;html-components&gt;
+  &lt;product-card compo-attrs="name,price=599"&gt;
+    &lt;div class="product"&gt;
+      &lt;h4&gt;@{name}&lt;/h4&gt;
+      &lt;p&gt;Price: $@{price}&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/product-card&gt;
+&lt;/html-components&gt;</pre>
+      </div>
+      
+      <div class="output-block">
+        <product-card name="Laptop" price="999"></product-card>
+        <product-card name="Phone"></product-card>
+      </div>
+    </section>
+
+    <section id="shadow-dom">
+      <h2>Shadow DOM Support</h2>
+      
+      <p>HTML-COMPO.js supports Shadow DOM encapsulation using the <code>fragment="true"</code> attribute:</p>
+      
+      <div class="code-block">
+        <pre>&lt;style&gt;
+  .shadow-demo { color: red; font-size: 20px; }
+&lt;/style&gt;
+
+&lt;shadow-component&gt;This text won't be affected by external styles&lt;/shadow-component&gt;
+&lt;div class="shadow-demo"&gt;This text will be red and large&lt;/div&gt;
+
+&lt;html-components&gt;
+  &lt;shadow-component fragment="true"&gt;
+    &lt;style&gt;
+      .shadow-demo { color: blue; font-size: 14px; }
+    &lt;/style&gt;
+    &lt;div class="shadow-demo"&gt;@{self.data}&lt;/div&gt;
+  &lt;/shadow-component&gt;
+&lt;/html-components&gt;</pre>
+      </div>
+      
+      <div class="info">
+        <strong>Note:</strong> When using Shadow DOM, styles defined within the component are encapsulated and won't affect the rest of the page.
+      </div>
+      
+      <div class="output-block">
+        <style>
+          .shadow-demo { color: red; font-size: 20px; }
+        </style>
+        <shadow-component>This text won't be affected by external styles</shadow-component>
+        <div class="shadow-demo">This text will be red and large</div>
+      </div>
+    </section>
+
+    <section id="api">
+      <h2>API Reference</h2>
+      
+      <h3>Global API</h3>
+      <p>HTML-COMPO.js exposes a global <code>htmlCompo</code> object with the following methods:</p>
+      
+      <div class="api-method">
+        <div class="method-signature">htmlCompo.getComponent(reference: string): HtmlCompoFunc | null</div>
+        <p>Gets a component instance by its reference attribute.</p>
+        <div class="parameter">
+          <span class="parameter-name">reference</span> <span class="parameter-type">string</span> - The value of the ref attribute
+        </div>
+        <p><strong>Returns:</strong> An HtmlCompoFunc instance or null if not found</p>
+      </div>
+      
+      <h3>HtmlCompoFunc Class</h3>
+      <p>Returned by <code>getComponent()</code>, provides methods to manipulate components:</p>
+      
+      <div class="api-method">
+        <div class="method-signature">html(): string</div>
+        <div class="method-signature">html(content: string): void</div>
+        <p>Gets or sets the HTML content of the component.</p>
+      </div>
+      
+      <div class="api-method">
+        <div class="method-signature">attr(name: string): string | null</div>
+        <div class="method-signature">attr(name: string, value: string): void</div>
+        <p>Gets or sets an attribute of the component.</p>
+      </div>
+      
+      <h3>Using Component References</h3>
+      <div class="code-block">
+        <pre>&lt;my-counter ref="counter1" count="0"&gt;&lt;/my-counter&gt;
+&lt;button onclick="incrementCounter()"&gt;Increment&lt;/button&gt;
+
+&lt;script&gt;
+function incrementCounter() {
+  const counter = htmlCompo.getComponent('counter1');
+  if (counter) {
+    const currentCount = parseInt(counter.attr('count')) + 1;
+    counter.attr('count', currentCount);
+    counter.html(`Count: ${currentCount}`);
+  }
+}
+&lt;/script&gt;
+
+&lt;html-components&gt;
+  &lt;my-counter compo-attrs="count"&gt;
+    Count: @{count}
+  &lt;/my-counter&gt;
+&lt;/html-components&gt;</pre>
+      </div>
+      
+      <div class="output-block">
+        <my-counter ref="counter1" count="0"></my-counter>
+        <button onclick="incrementCounter()">Increment</button>
+      </div>
+    </section>
+
+    <section id="examples">
+      <h2>Advanced Examples</h2>
+      
+      <h3>Todo List Component</h3>
+      <div class="code-block">
+        <pre>&lt;todo-item task="Buy groceries" completed="false"&gt;&lt;/todo-item&gt;
+&lt;todo-item task="Walk the dog" completed="true"&gt;&lt;/todo-item&gt;
+
+&lt;html-components&gt;
+  &lt;todo-item compo-attrs="task,completed=false"&gt;
+    &lt;div class="todo-item" style="margin: 10px 0; padding: 10px; border: 1px solid #ddd;"&gt;
+      &lt;input type="checkbox" @{completed === 'true' ? 'checked' : ''}&gt;
+      &lt;span style="@{completed === 'true' ? 'text-decoration: line-through; color: #999;' : ''}"&gt;
+        @{task}
+      &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/todo-item&gt;
+&lt;/html-components&gt;</pre>
+      </div>
+      
+      <div class="output-block">
+        <todo-item task="Buy groceries" completed="false"></todo-item>
+        <todo-item task="Walk the dog" completed="true"></todo-item>
+      </div>
+      
+      <h3>Card Component with Slots</h3>
+      <div class="code-block">
+        <pre>&lt;info-card title="Welcome" type="success"&gt;
+  This is a success message with &lt;strong&gt;HTML content&lt;/strong&gt;!
+&lt;/info-card&gt;
+
+&lt;info-card title="Warning" type="warning"&gt;
+  Please check your input carefully.
+&lt;/info-card&gt;
+
+&lt;html-components&gt;
+  &lt;info-card compo-attrs="title,type=info"&gt;
+    &lt;div style="border: 2px solid; padding: 15px; margin: 10px 0; border-radius: 5px;
+                border-color: @{type === 'success' ? '#4caf50' : type === 'warning' ? '#ff9800' : '#2196f3'};
+                background-color: @{type === 'success' ? '#e8f5e8' : type === 'warning' ? '#fff3e0' : '#e3f2fd'};"&gt;
+      &lt;h4 style="margin: 0 0 10px 0; color: @{type === 'success' ? '#2e7d32' : type === 'warning' ? '#ef6c00' : '#1565c0'};"&gt;
+        @{title}
+      &lt;/h4&gt;
+      &lt;div&gt;@{self.data}&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/info-card&gt;
+&lt;/html-components&gt;</pre>
+      </div>
+      
+      <div class="output-block">
+        <info-card title="Welcome" type="success">
+          This is a success message with <strong>HTML content</strong>!
+        </info-card>
+        <info-card title="Warning" type="warning">
+          Please check your input carefully.
+        </info-card>
+      </div>
+      
+      <h3>Navigation Menu</h3>
+      <div class="code-block">
+        <pre>&lt;nav-menu&gt;
+  &lt;nav-item href="#home"&gt;Home&lt;/nav-item&gt;
+  &lt;nav-item href="#about"&gt;About&lt;/nav-item&gt;
+  &lt;nav-item href="#contact" active="true"&gt;Contact&lt;/nav-item&gt;
+&lt;/nav-menu&gt;
+
+&lt;html-components&gt;
+  &lt;nav-menu&gt;
+    &lt;ul style="list-style: none; display: flex; gap: 0; margin: 0; padding: 0; background: #333;"&gt;
+      @{self.data}
+    &lt;/ul&gt;
+  &lt;/nav-menu&gt;
+  
+  &lt;nav-item compo-attrs="href,active=false"&gt;
+    &lt;li&gt;
+      &lt;a href="@{href}" 
+         style="display: block; padding: 15px 20px; color: white; text-decoration: none;
+                background: @{active === 'true' ? '#555' : 'transparent'};
+                border-bottom: @{active === 'true' ? '3px solid #007bff' : 'none'};"&gt;
+        @{self.data}
+      &lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/nav-item&gt;
+&lt;/html-components&gt;</pre>
+      </div>
+      
+      <div class="output-block">
+        <nav-menu>
+          <nav-item href="#home">Home</nav-item>
+          <nav-item href="#about">About</nav-item>
+          <nav-item href="#contact" active="true">Contact</nav-item>
+        </nav-menu>
+      </div>
+    </section>
+
+    <section id="typescript">
+      <h2>TypeScript Support</h2>
+      
+      <p>HTML-COMPO.js includes full TypeScript support with type definitions and a TypeScript source version.</p>
+      
+      <h3>Installation with TypeScript</h3>
+      <div class="code-block">
+        <pre>npm install html-compo
+npm install -D typescript</pre>
+      </div>
+      
+      <h3>Type Definitions</h3>
+      <p>The library provides comprehensive type definitions:</p>
+      
+      <div class="code-block">
+        <pre>interface HtmlCompoAPI {
+  getComponent(reference: string): HtmlCompoFunc | null;
+}
+
+declare global {
+  interface Window {
+    htmlCompo: HtmlCompoAPI;
+  }
+}
+
+class HtmlCompoFunc {
+  html(): string;
+  html(content: string): void;
+  attr(name: string): string | null;
+  attr(name: string, value: string): void;
+}</pre>
+      </div>
+      
+      <h3>Usage in TypeScript</h3>
+      <div class="code-block">
+        <pre>// Type-safe component access
+const component = window.htmlCompo.getComponent('my-ref');
+if (component) {
+  // TypeScript knows these methods exist and their signatures
+  const content: string = component.html();
+  component.attr('class', 'new-class');
+}</pre>
+      </div>
+      
+      <div class="info">
+        <strong>Note:</strong> The TypeScript version maintains full compatibility with the JavaScript version while providing compile-time type checking and better IDE support.
+      </div>
+    </section>
+
+    <section>
+      <h2>Best Practices</h2>
+      
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>📝 Naming Convention</h4>
+          <p>Use kebab-case for component names (e.g., <code>user-card</code>, <code>nav-item</code>)</p>
+        </div>
+        
+        <div class="feature-card">
+          <h4>🎯 Keep Components Simple</h4>
+          <p>Each component should have a single responsibility and be reusable</p>
+        </div>
+        
+        <div class="feature-card">
+          <h4>📦 Use Attributes Wisely</h4>
+          <p>Leverage <code>compo-attrs</code> for configurable components with sensible defaults</p>
+        </div>
+        
+        <div class="feature-card">
+          <h4>🔒 Consider Shadow DOM</h4>
+          <p>Use <code>fragment="true"</code> when you need style encapsulation</p>
+        </div>
+        
+        <div class="feature-card">
+          <h4>🏷️ Use References</h4>
+          <p>Add <code>ref</code> attributes to components you need to manipulate with JavaScript</p>
+        </div>
+        
+        <div class="feature-card">
+          <h4>⚡ Performance</h4>
+          <p>Define components early in your HTML for optimal performance</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 HTML-COMPO.js | <a href="https://github.com/SarthakWhenever/html-compo.js" style="color: #63b3ed;">GitHub</a> | <a href="https://www.npmjs.com/package/html-compo" style="color: #63b3ed;">NPM</a></p>
+    </div>
+  </footer>
+
+  <!-- Component Definitions -->
+  <html-components>
+    <user-card>
+      <div style="border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; background: #f9f9f9;">
+        <h3 style="margin: 0 0 10px 0; color: #333;">@{self.data}</h3>
+      </div>
+    </user-card>
+    
+    <greeting-card>
+      <div style="border: 2px solid #667eea; padding: 20px; margin: 15px 0; border-radius: 10px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); text-align: center;">
+        <h2 style="margin: 0 0 10px 0; color: #4a5568;">🎉 @{self.data} 🎉</h2>
+        <p style="margin: 0; color: #718096;">This is a @{self.componentName} component!</p>
+      </div>
+    </greeting-card>
+    
+    <user-profile compo-attrs="name,email,role">
+      <div style="border: 1px solid #e2e8f0; padding: 15px; margin: 10px 0; border-radius: 8px; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h3 style="margin: 0 0 10px 0; color: #2d3748;">@{name}</h3>
+        <p style="margin: 5px 0; color: #4a5568;">Email: @{email}</p>
+        <p style="margin: 5px 0; color: #4a5568;">Role: @{role}</p>
+      </div>
+    </user-profile>
+    
+    <product-card compo-attrs="name,price=599">
+      <div style="border: 1px solid #cbd5e0; padding: 15px; margin: 10px 0; border-radius: 8px; background: #f7fafc;">
+        <h4 style="margin: 0 0 8px 0; color: #2d3748;">@{name}</h4>
+        <p style="margin: 0; font-weight: 600; color: #38a169;">Price: $@{price}</p>
+      </div>
+    </product-card>
+    
+    <shadow-component fragment="true">
+      <style>
+        .shadow-demo { color: blue; font-size: 14px; }
+      </style>
+      <div class="shadow-demo">@{self.data}</div>
+    </shadow-component>
+    
+    <my-counter compo-attrs="count">
+      <div style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; display: inline-block; margin: 5px;">
+        Count: @{count}
+      </div>
+    </my-counter>
+    
+    <todo-item compo-attrs="task,completed=false">
+      <div style="margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background: #f9f9f9;">
+        <input type="checkbox">
+        <span style="margin-left: 8px;">@{task}</span>
+      </div>
+    </todo-item>
+    
+    <info-card compo-attrs="title,type=info">
+      <div style="border: 2px solid #2196f3; padding: 15px; margin: 10px 0; border-radius: 5px; background-color: #e3f2fd;">
+        <h4 style="margin: 0 0 10px 0; color: #1565c0;">@{title}</h4>
+        <div>@{self.data}</div>
+      </div>
+    </info-card>
+    
+    <nav-menu>
+      <ul style="list-style: none; display: flex; gap: 0; margin: 0; padding: 0; background: #333; border-radius: 5px; overflow: hidden;">
+        @{self.data}
+      </ul>
+    </nav-menu>
+    
+    <nav-item compo-attrs="href,active=false">
+      <li>
+        <a href="@{href}" style="display: block; padding: 15px 20px; color: white; text-decoration: none;">
+          @{self.data}
+        </a>
+      </li>
+    </nav-item>
+  </html-components>
+
+  <script>
+    function showTab(tabName) {
+      // Hide all tab contents
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      
+      // Remove active class from all tabs
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      // Show selected tab content
+      document.getElementById(tabName).classList.add('active');
+      
+      // Add active class to clicked tab
+      event.target.classList.add('active');
+    }
+    
+    function incrementCounter() {
+      const counter = htmlCompo.getComponent('counter1');
+      if (counter) {
+        const currentCount = parseInt(counter.attr('count')) + 1;
+        counter.attr('count', currentCount);
+        // Note: In a real app, you'd want to trigger a re-render here
+        // For this demo, we'll just update the text
+        counter.html(`Count: ${currentCount}`);
+      }
+    }
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

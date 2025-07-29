@@ -4,6 +4,8 @@
   "description": "A simple reusable html elemental components coding framework",
   "main": "src/html-compo.dev.js",
   "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
     "minify-main": "npx minify src/html-compo.js > src/html-compo.min.js && cp src/html-compo.min.js src/html-compo.dev.min.js",
     "test": "echo \\\"No tests needed\\\";"
   },
@@ -18,6 +20,9 @@
   },
   "homepage": "https://github.com/SarthakWhenever/html-compo.js#readme",
   "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
   "keywords": [
     "html-compo",
     "reusable",
